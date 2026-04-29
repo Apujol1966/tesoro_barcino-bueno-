@@ -1,0 +1,195 @@
+📜 DOCUMENTO MAESTRO: EL TESORO DE BARCINO
+Estado: En desarrollo (Paradas 1 y 2 completadas).
+Estilo Visual: Ruinas y Grabados (Oscuro, Piedra, Rojo Óxido).
+1. ESTRUCTURA DE ARCHIVOS Y CARPETAS
+Así debe lucir tu carpeta del proyecto ahora mismo:
+code
+Text
+/ (RAÍZ DEL PROYECTO)
+│
+├── config.js               (Contiene la contraseña: const CLAVE_ACTUAL = "BARCINO")
+├── index.html              (Selector de Idioma)
+├── login_es.html           (Login Español - Redirige a instrucciones)
+├── login_ca.html           (Login Catalán - Redirige a instrucciones)
+├── login_en.html           (Login Inglés - Redirige a instrucciones)
+├── reset.html              (Herramienta para borrar cookies/progreso y probar de cero)
+│
+├── recursos/               (CARPETA DE IMÁGENES Y PDFS)
+│   ├── portada.jpg
+│   ├── trama-lucio-inicio.jpg
+│   ├── p1-inicio.jpg       (Foto genérica/Plaça Catalunya)
+│   ├── p1-enigma.jpg       (Arcos del acueducto en la torre)
+│   ├── p1-recompensa.jpg   (Detalle acueducto)
+│   ├── p2-templo.jpg       (Callejón gótico/Carrer Paradís exterior)
+│   ├── p2-enigma.jpg       (Placa metálica 16,9m)
+│   ├── p2-recompensa.jpg   (Columnas Templo Augusto)
+│   ├── p2-columnas-interior.jpg (Para la pista si está cerrado)
+│   └── columna_viajera.pdf (PDF histórico)
+│
+└── tesoro/                 (CARPETA DEL JUEGO)
+    ├── tesoro-estilos.css  (Hoja de estilos principal)
+    ├── candado.js          (Script de seguridad y redirección de idiomas)
+    ├── 01-instrucciones.html (Reglas del juego)
+    ├── 00-portada.html     (Narrativa de Lucio + Botón Continuar Partida)
+    ├── p1-navegacion.html  (Rumbo a Plaça Nova)
+    ├── p1-enigma.html      (Enigma: Contar arcos acueducto)
+    ├── p1-recompensa.html  (Historia Acueducto + Enigma Carta Números Romanos)
+    ├── p2-navegacion.html  (Rumbo a Carrer Paradís)
+    ├── p2-enigma.html      (Enigma: Placa 16,9m y Piedra Molino)
+    ├── p2-recompensa.html  (Historia Viajera + Enigma Carta "Cuerpo Entero")
+    └── pista-cerrado.html  (Pantalla alternativa si el templo está cerrado)
+2. FLUJO DE JUEGO (NARRATIVA Y MECÁNICAS)
+A. ACCESO Y BIENVENIDA
+index.html: El jugador elige idioma.
+login_XX.html: Introduce la clave. Si es correcta, guarda el token y pasa a Instrucciones.
+01-instrucciones.html: Normas básicas (ayuda progresiva, mapa, sin mayúsculas).
+00-portada.html:
+Narrativa: Lucio (desde África) contacta al jugador.
+Mecánica: Detecta si ya habías jugado (localStorage) y ofrece "Continuar" o "Empezar de cero".
+B. PARADA 1: LAS VENAS DE PIEDRA (Plaça Nova)
+p1-navegacion.html:
+Pista: "Sendero del Ángel", "Venas de piedra".
+Ayuda: Pregunta de control ("Ángel") -> Mapa a Plaça Nova.
+p1-enigma.html:
+Reto: "¿Cuántos arcos del acueducto ves junto a la torre?"
+Solución: 2 (o DOS).
+p1-recompensa.html:
+Historia: Datos sobre el acueducto.
+Enlace: Presenta el código de números romanos de la carta (I / XXII...).
+Solución del código: AUGUSTI TEMPLI.
+C. PARADA 2: LA CIMA (Carrer Paradís / Templo)
+p2-navegacion.html:
+Pista: Texto sobre el Templo en el Foro.
+Ayuda: Pregunta de control ("Templo") -> Mapa a Carrer Paradís.
+p2-enigma.html:
+Contexto: Piedra de molino en la entrada (marcador geográfico).
+Reto: "¿Qué altura marca la placa metálica?"
+Solución: 16,9 (o 16,90).
+p2-recompensa.html:
+Historia: Explica que estamos en la cima.
+Opción Cerrado: Enlace a pista-cerrado.html (muestra el interior y PDF "Columna Viajera").
+Enlace: Presenta el enigma de la "Viajera" ("¿Dónde estuve cuando mi cuerpo estuvo entero?").
+Acción: Botón "CONTINUAR" hacia la Parada 3.
+3. LÓGICA TÉCNICA IMPLEMENTADA
+Seguridad (candado.js):
+Verifica si clave_guardada existe y coincide con config.js.
+Si no, expulsa al usuario al login correspondiente según su idioma (navigator.language).
+Persistencia (localStorage):
+Cada vez que se pulsa un botón de "Empezar" o avanzar fase importante, se guarda la URL en progresoJuego.
+En la portada, si existe esa variable, aparece el modal negro "Partida Detectada".
+Estilos (tesoro-estilos.css):
+Fondo de piedra oscura.
+Texto claro (#e0e0e0).
+Acentos en rojo óxido (#b74f3b).
+Fuentes romanas (Roboto Slab).
+4. LO QUE TOCA HACER AHORA
+El jugador acaba de salir de la Parada 2 con el enigma de la "Viajera" en la cabeza y un botón que dice "CONTINUAR".
+El siguiente paso es la PARADA 3: LA MURALLA / FULLONICA.
+Paso Inmediato: Crear p3-navegacion.html.
+Objetivo: Llevar al jugador a la Calle de Santa Clara (o Plaza Sant Miquel).
+Pista de la Carta: "Conforme caminas por las piedras de la estrecha calle de Santa Clara...".
+Enigma posterior (Parada 3): Aquí es donde vendrá el conteo y el código Pigpen.
+
+12/03/2026
+
+Model 1:43 p.m.
+¡Por supuesto! Mientras revisas, te preparo el DOCUMENTO MAESTRO DEL PROYECTO (Estado Actual).
+Este documento es un resumen detallado de todo lo que hemos creado hasta ahora, incluyendo la estructura de archivos, la lógica de los enigmas, las traducciones y las funcionalidades implementadas.
+📜 DOCUMENTO MAESTRO: EL TESORO DE BARCINO
+Estado: Desarrollo Avanzado (Paradas 1 y 2 completadas y multilingües).
+Estilo Visual: Ruinas y Grabados (Oscuro, Piedra, Rojo Óxido).
+1. ESTRUCTURA DE ARCHIVOS Y CARPETAS
+Así debe lucir tu carpeta del proyecto ahora mismo:
+code
+Text
+/ (RAÍZ DEL PROYECTO)
+│
+├── config.js               (Contiene la clave de acceso: const CLAVE_ACTUAL = "BARCINO")
+├── index.html              (Selector de Idioma: ES, CA, EN)
+├── login_es.html           (Login Español)
+├── login_ca.html           (Login Catalán)
+├── login_en.html           (Login Inglés)
+├── reset.html              (Herramienta para borrar progreso y cookies)
+│
+├── recursos/               (CARPETA DE IMÁGENES Y PDFS)
+│   ├── portada.jpg
+│   ├── trama-lucio-inicio.jpg
+│   ├── p1-inicio.jpg       (Foto genérica o de Plaça Catalunya)
+│   ├── p1-enigma.jpg       (Arcos del acueducto o muralla)
+│   ├── p1-recompensa.jpg   (Detalle del acueducto)
+│   ├── p2-templo.jpg       (Carrer Paradís exterior o callejón)
+│   ├── p2-enigma.jpg       (Placa metálica 16,9m)
+│   ├── p2-recompensa.jpg   (Columnas del Templo)
+│   ├── p2-columnas-interior.jpg (Para la pista si está cerrado)
+│   ├── p3-camino.jpg       (Baixada de Santa Clara / Plaça del Rei)
+│   ├── p3-enigma.jpg       (Muestra de Pigpen y Clave)
+│   └── ... (restos de imágenes para las siguientes paradas)
+│   └── columna_viajera.pdf (PDF con la historia de la columna)
+│
+└── tesoro/                 (CARPETA PRINCIPAL DEL JUEGO)
+    │
+    ├── tesoro-estilos.css  (Estilos generales del juego)
+    ├── candado.js          (Script de seguridad y redirección de acceso)
+    │
+    ├── 00-portada.html     (Pantalla inicial con la historia y botón de inicio)
+    ├── 01-instrucciones.html (Reglas del juego, ayuda y contacto)
+    │
+    ├── p1-navegacion.html  (Navegación a Plaça Nova - Es la primera pantalla del juego)
+    ├── p1-enigma.html      (Enigma de los arcos - Respuesta: 2/DOS)
+    ├── p1-recompensa.html  (Confirmación BARCINO, Cifrado Romano, pista a Templo)
+    │
+    ├── p2-navegacion.html  (Navegación a Carrer Paradís / Templo)
+    ├── p2-enigma.html      (Enigma de la Placa 16,9m)
+    ├── p2-recompensa.html  (Historia de la columna, Saludo a Cneo, pide resolver acertijo)
+    ├── pista-cerrado.html  (Pista alternativa si el Templo está cerrado)
+    │
+    ├── p3-navegacion.html  (Navegación a Baixada Santa Clara / Plaça Sant Miquel)
+    ├── p3-enigma.html      (ENIGMA PIGPEN + CONTEO)
+    ├── p3-recompensa.html  (Aún no creada)
+    │
+    └── ... (Resto de paradas)
+2. FLUJO DE JUEGO Y MECÁNICAS IMPLEMENTADAS
+A. ACCESO Y BIENVENIDA (Multilingüe)
+index.html:
+Selección de idioma (ES, CA, EN).
+Redirige al login_XX.html correspondiente.
+login_XX.html:
+Interfaz de acceso con el código de Lucio (configurable en config.js).
+Validación contra CLAVE_ACTUAL.
+Si es correcto, guarda la clave en localStorage y redirige a 01-instrucciones.html.
+01-instrucciones.html:
+Muestra las reglas del juego: misión, ayuda (enigmas, navegación), ritmo, etc.
+Incluye el enlace a "Contacta con el Master" que abre un modal con el teléfono.
+00-portada.html:
+Pantalla inicial tras el login, con la historia de Lucio y el botón "ACEPTO EL RETO".
+Incluye la lógica de "Continuar Partida" (guarda la última parada en localStorage).
+B. PARADA 1: LAS VENAS DE PIEDRA (Plaça Nova)
+p1-navegacion.html:
+Guía poética de Lucio desde Plaça Catalunya hasta Plaça Nova.
+Mecánica de Ayuda: Pregunta "¿Por qué sendero debes continuar?" -> Respuesta "ÁNGEL". Si acierta, muestra pista y mapa.
+p1-enigma.html:
+Reto: Contar los arcos de la escultura de letras en Plaça Nova.
+Solución: 2 (o DOS, DOS ARCOS).
+p1-recompensa.html:
+Confirma el acierto ("Son DOS arcos").
+Presenta el enigma de la carta: Cifrado Romano (I / XXII...).
+Solución: AUGUSTI TEMPLI.
+Guía a la siguiente parada: p2-navegacion.html.
+C. PARADA 2: EL TEMPLO (Carrer Paradís)
+p2-navegacion.html:
+Confirma el destino: Templo de Augusto.
+Da contexto histórico (Foro, Monte Táber).
+Ayuda: Pregunta "¿Qué edificio principal se encontraba en el foro?" -> Respuesta "TEMPLO". Muestra pista y mapa a Carrer Paradís.
+p2-enigma.html:
+Contexto: Piedra de molino, Centre Excursionista.
+Reto: "¿A qué altura (en metros) indica la placa?"
+Solución: 16,9.
+p2-recompensa.html:
+Confirma el acierto.
+Presenta el acertijo de la "Viajera".
+Ofrece la opción de ver información de la columna/horarios en pista-cerrado.html si el lugar está cerrado.
+Guía a la siguiente parada: p3-navegacion.html.
+D. SISTEMAS TRANSVERSALES
+Seguridad: candado.js protege el acceso a todas las páginas de /tesoro/ mediante localStorage.
+Estilo: tesoro-estilos.css define la estética general del juego.
+Ayuda Directa: help-button y help-modal (con el número de teléfono) están siempre disponibles (en 01-instrucciones.html y 00-portada.html, y se añadirán a todas las demás).

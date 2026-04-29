@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resetear Todo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>body{font-family:sans-serif;background-color:#424242;color:#e0e0e0;display:flex;justify-content:center;align-items:center;height:100vh;text-align:center}.container{padding:40px;background-color:rgba(30,30,30,0.9);border-radius:12px;box-shadow: 0 4px 15px rgba(0,0,0,0.5);border: 1px solid #b74f3b}button{padding:15px;background-color:#b74f3b;color:white;border:none;border-radius:8px;font-size:1.2rem;cursor:pointer}#message{margin-top:20px;color:#4cd137}</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Herramienta de Limpieza</h1>
+        <p>Esto borrará tu progreso y el código de acceso. Tendrás que volver a hacer Login.</p>
+        <button onclick="resetAll()">Cerrar Sesión y Borrar Progreso</button>
+        <div id="message"></div>
+    </div>
+    <script>
+        function resetAll() {
+            // 1. Borrar progreso del juego (si lo implementamos más adelante)
+            localStorage.removeItem('progresoJuego');
+            
+            // 2. Borrar el CÓDIGO DE ACCESO (¡Importante!)
+            localStorage.removeItem('clave_guardada');
+            
+            // 3. Borrar el sistema antiguo (por si acaso)
+            localStorage.removeItem('acceso_manuscrito');
+            
+            document.getElementById('message').textContent = "¡Datos borrados! Redirigiendo...";
+            
+            // 4. Te manda al index (que te saltará al login)
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

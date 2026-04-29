@@ -1,0 +1,76 @@
+He extraído todos los textos, imágenes y la lógica del juego "El Tesoro de Barcino". Me he dado cuenta de algunos puntos muy interesantes y la ruta tiene algunos giros inesperados.
+Aquí tienes el Documento Maestro de Contenido para "El Tesoro de Barcino". Este será el guion que usaremos para programarlo en HTML.
+DOCUMENTO MAESTRO DE CONTENIDO: "EL TESORO DE BARCINO"
+Objetivo: Migrar el contenido de este juego de Typeform a nuestro sistema HTML.
+Protagonista: Lucio Minicio Natal (Primer hispano olímpico, senador y cónsul de Barcino).
+Trama: Lucio desaparece en África. Una carta suya a su amigo Cneo (aquí en Barcino) habla de "El Tesoro de Barcino" y de senadores corruptos.
+Consideración General: El juego original de Typeform usa mucho "Foto A / Foto B" para verificar la llegada. En nuestra versión HTML, simplemente pondremos la foto del lugar y una pregunta de control para validar si han llegado (ej: "¿Ves la estatua de...?").
+INTRODUCCIÓN (ANTES DEL JUEGO)
+Pantalla 1 (Portadillas):
+"EL TESORO DE BARCINO"
+"DESCRIPCIÓN (OPCIONAL)"
+Botón: "¡EMPECEMOS!"
+Pantalla 2 (Instrucciones):
+"RECORDAD QUE TODAS LAS RESPUESTAS DEBEN ESTAR ESCRITAS CON EL 'MAYÚSCULAS' DE VUESTRO TECLADO ACTIVADO."
+"SI OS ATASCÁIS, SIEMPRE PODÉIS USAR VUESTRO ACCESO A INTERNET O RECURRIR AL GAME MASTER ESCRIBIENDO AL WHATSAPP DESDE EL QUE OS HAN ESCRITO."
+Botón: "CONTINUAR"
+Pantalla 3 (Trama - Contexto):
+"LUCIO MINICIO NATAL, HÉROE DE BARCINO, RECLAMA TU AYUDA PARA RECUPERAR SU TESORO Y EVITAR QUE LOS SENADORES CORRUPTOS DE LA CIUDAD SE HAGAN CON ÉL. ¿ACEPTAS EL RETO?"
+Botón: "CONTINUAR"
+Pantalla 4 (Historia Lucio):
+"LUCIO MINICIO NATAL. EL PRIMER HISPANO EN GANAR UNOS JUEGOS OLÍMPICOS. FUE UN SENADOR Y CÓNSUL NACIDO EN BARCINO QUE PROMOVIÓ LA FUNDACIÓN DE LAS TERMAS DE LA CIUDAD, CONVIRTIÉNDOSE ASÍ EN EL BARCINENSE MÁS FAMOSO DE TODOS LOS TIEMPOS. SU HISTORIA SE CONOCE DE SOBRAS, PERO SOBRE SU MUERTE NO HAY DATOS. NADIE SABE DÓNDE MURIÓ, NI CÓMO, NI CUÁNDO. NADIE, HASTA AHORA..."
+Botón: "CONTINUAR"
+Pantalla 5 (La Carta a Cneo):
+"LO ÚLTIMO QUE SE SABE DE LUCIO ES SU ASIGNACIÓN COMO CÓNSUL DE LA PROVINCIA DE ÁFRICA. DESDE ALLÍ, UNA MISTERIOSA CARTA LLEGA A MANOS DE CNEO, SU MEJOR AMIGO, AQUÍ EN BARCINO. LA CARTA PARECE CONTENER SÍMBOLOS INSÓLITOS Y SUS PRIMERAS FRASES SON PREOCUPANTES... UTILIZA LA CARTA QUE TE HAN ENVIADO PARA GUIARTE POR EL JUEGO."
+Botón: "CONTINUAR"
+Pantalla 6 (Descargar Carta):
+"ESTA ES LA CARTA DE LUCIO. LEE CON ATENCIÓN SUS PRIMERAS LÍNEAS. VE CON CUIDADO, SI LUCIO SE HA MOLESTADO EN ENCRIPTAR SU MENSAJE, PUEDE QUE ALGUIEN MÁS ESTÉ INTERESADO EN LA MISIVA. DESCARGA LA CARTA QUE LUCIO ENVÍA A CNEO Y CONSÉRVALA CONTIGO PARA AYUDARTE A ENCONTRAR EL TESORO DE BARCINO"
+Botón: "CONTINUAR" (Aquí habrá un enlace a la descarga de un PDF/JPG de la carta).
+Pantalla 7 (Spoiler Alert):
+"¡SI NO QUIERES HACERTE UN SPOILER, DEJA DE LEER LA CARTA EN CADA PRUEBA HASTA QUE LA SUPERES!"
+Botón: "CONTINUAR"
+EL JUEGO (PARADAS DE ENIGMAS)
+PARADA 1: TEMPLO DE AUGUSTO (Carrer Paradís)
+Pista de Salto (Tipo Typeform): "DESDE EL LUGAR EN EL QUE EMPIEZA TU ANDADURA, DEBES PASAR A TRAVÉS DE LA FUENTE DE LOS MÁS INOCENTES CON SUS CESTAS Y CONTINUAR POR EL SENDERO DEL ÁNGEL. CASI AL FINAL DEL CAMINO, CUANDO NO SABES QUÉ DIRECCIÓN TOMAR, DEJA A LAS MUJERES QUE TRANSPORTAN ÁNFORAS A TU DERECHA. A BARCINO, MI CIUDAD, LA SANGRE EN FORMA DEL LÍQUIDO DE LA VIDA LLEGA A TRAVÉS DE SUS VENAS HECHAS DE PIEDRA. ALLÍ, DONDE SU ARTERIA EMPIEZA Y TERMINA, DONDE SIETE FIGURAS CUSTODIADAS POR EL SOL Y LA LUNA DESCANSAN EN EL SUELO, ESCRITAS CON ELLAS ENCONTRARÁN MI ÚLTIMA VOZ."
+Imagen de Ubicación (referencia): Captura de la Plaça Nova con la Catedral y las Torres Romanas (similar a la nuestra de roma.jpg).
+Pregunta de Typeform: "¿HA LLEGADO AL LUGAR INDICADO? ¿ERES CAPAZ DE VER LAS SIETE FIGURAS?"
+Nota: En nuestra versión, la "Pista de Salto" será la de arriba. El "Enigma" será: "¿Qué nombre de 7 letras está en el suelo?".
+Enigma (real): "PARA VER MI MENSAJE SOLO HAY QUE SABER QUE... B = II / A = I / I = IX" (y luego el código críptico).
+Código a descifrar: I / XXII / VII / XXII / XX / XXI / IX y XXI / V / XIII / XVII / XII / IX
+Solución (según correo): AUGUSTI TEMPLI. (Verificaremos la decodificación).
+Recompensa (al acertar): "¡ESO ES! ¡ES EL LUGAR DE LA SIGUIENTE PISTA. EL TEMPLO DE AUGUSTO DE BARCINO SE ENCONTRABA EN EL FORO, EN EL CENTRO NEURÁLGICO DE LA COLONIA. ¡ENCUÉNTRALO PARA SEGUIR EL CAMINO QUE LUCIO NOS HA DEJADO!"
+Información de Cultura: "EL ACUEDUCTO DE BARCINO FUE CONSTRUIDO EN EL SIGLO I Y MANTUVO SU FUNCIONAMIENTO HASTA EL SIGLO X. TRAÍA AGUA DESDE EL RÍO BESÓS E INICIABA SU CONSTRUCCIÓN EN LA ACTUAL CIUDAD DE MONTCADA. EL TRAMO QUE SE PUEDE VER SE ENCUENTRA EN LA PORTA PRAETORIA DE BARCINO, EN LA ACTUAL PLAÇA NOVA."
+PARADA 2: PLAÇA DEL REI
+Pista de Salto (Mapa): QR o LINK para llegar al TEMPLO DE AUGUSTO.
+Imagen de Ubicación (referencia): Columnas del Templo de Augusto.
+Pregunta de Typeform: "¿HA LLEGADO AL LUGAR INDICADO? ESCOGE LA VISTA QUE TIENES DESDE EL LUGAR EN EL QUE TE ENCUENTRAS" (Opciones A y B).
+Nota: Asumo que el objetivo es la imagen de las columnas del Templo.
+Enigma (real): "POR FIN HEMOS LLEGADO AL TEMPLO DE AUGUSTO. OBSERVA LA SIGUIENTE PRUEBA DE LUCIO... PARECE QUE HAY QUE SEGUIR EL RASTRO DE UNA VIAJERA ...¿QUÉ QUERRÁ DECIR? SI EL TEMPLO ESTÁ CERRADO, UTILIZA ESTA IMAGEN COMO GUÍA" (Imagen de una columna).
+Nota: El correo dice que la solución de la Parada 2 es II-XI-II-I-I. Esto es un código numérico romano.
+Hay una inconsistencia aquí: El email dice "II-XI-II-I-I", pero las capturas muestran una pregunta de "Contar" ("¿Cuántas campanas puedes ver? ¿Cuántas gárgolas...?"). Esto lo aclararemos al programar.
+Recompensa (al acertar): "¡CLARA! ¡ESO ES! MENOS MAL QUE ESTÁS AQUÍ! AHORA DEBERÍAMOS SEGUIR EL CAMINO HACIA LA SIGUIENTE PISTA. PRESTA ATENCIÓN A LA CARTA DE LUCIO ANTES DE LLEGAR AL SIGUIENTE PUNTO CLAVE."
+PARADA 3: PLAÇA SANT MIQUEL
+Pista de Salto (Carta): "DEBERÍAMOS SEGUIR LAS INDICACIONES DE LUCIO PARA ENCONTRAR EL SIGUIENTE PUNTO... CONFORME CAMINAS CAMINANDO POR LAS PIEDRAS DE LA ESTRECHA CALLE DE SANTA CLARA, A TU DERECHA QUEDARÁ UNA POSADA TAN ANTIGUA COMO SU NOMBRE. DE FRENTE, IMPONENTE HIERRO ENCONTRARÁS, Y SÓLO SI MIRAS A TRAVÉS DE SU OJO SABRÁS DESDE DÓNDE MIRAR VIEJAS PIEDRAS ACRISTALADAS AÚN SE CONSERVAN Y DEBERÁS MIRAR DESDE DÓNDE AÚN QUEDA ALGO TAN ANTIGUO COMO YO AHORA QUE SABES DÓNDE MIRAR. LA SIGUIENTE PISTA PODRÁS ENCONTRAR."
+Enigma: La solución según el correo es PLAZA SANT MIQUEL. Esto parece ser una validación de llegada, no un enigma.
+Recompensa (al acertar): "¡ESTAMOS JUSTO EN EL LUGAR! SIGAMOS LEYENDO LAS INSTRUCCIONES DE LUCIO... ¿NOTAS ESE OLOR...? ¡ES HORRIBLE! ESTÁS EN EL ANTIGUO BARRIO DE BARCINO DONDE SE ENCONTRABA LA 'FULLONICA' DE LA CIUDAD... UNA LAVANDERÍA, VAYA. LA PRINCIPAL DIFERENCIA CON LAS DE HOY EN DÍA ES QUE, NOSOTROS, LOS ROMANOS, UTILIZAMOS CENIZAS PARA LAVAR LA ROPA... Y ORINA HUMANA. DE AHÍ EL OLOR. CÓMO CAMBIAN LOS TIEMPOS, ¿EH?"
+PARADA 4: VÍA SEPULCRAL ROMANA (Plaça de la Vila de Madrid)
+Pista de Salto (Carta): "CLAVE G -- VIA SEPULCRAL ROMANA" (junto con el alfabeto cifrado).
+Alfabeto Cifrado: A BCDEFGHIJKLMN ÑOPQRSTUVWXYX Z y A = 6^
+Mensaje Cifrado: PCU - NYKOFWMUF - MJGUHU
+Solución (según correo): VIA SEPULCRAL ROMANA. (Esto es la respuesta del Cifrado César).
+Recompensa (al acertar): "¡ESO ES! ¡CÓMO NO HABÍA CAÍDO! ¡LA VÍA SEPULCRAL ROMANA DE BARCINO! EL MENSAJE QUE ACABAS DE DESCIFRAR SE CONOCE COMO 'CÓDIGO CÉSAR': ES UN MECANISMO DE MENSAJERÍA SECRETO QUE UTILIZABAN LAS LEGIONES ROMANAS DESDE TIEMPOS DE AQUEL QUE LE PRESTA SU NOMBRE: EL FAMOSO CAIO JULIO CÉSAR."
+Pista para la Siguiente Parada: "DIRÍGETE A LA VÍA SEPULCRAL ROMANA DE BARCINO PARA LA ÚLTIMA PRUEBA. VIGILA TUS ESPALDAS, ESTÁS CADA VEZ MÁS CERCA, Y TUS PERSEGUIDORES PODRÍAN ESTAR PISÁNDOTE LOS TALONES... USA EL MAPA QUE ENCONTRARÁS EN EL QR O EN ESTE ENLACE".
+Imagen de Ubicación (referencia): Fotos A y B (elegir la correcta).
+PARADA 5: LA TUMBA (Vía Sepulcral Romana)
+Pista de Salto: (La que hemos extraído de la Parada 4).
+Imagen de Ubicación (referencia): La vista de la Vía Sepulcral.
+Pregunta de Typeform: "¿CUÁL ES LA TUMBA? -- La posición de la imagen va cambiando cada vez que alguien lo abre. La buena es la que está en el centro hacia la parte de atrás."
+Nota: Esto es muy complejo para HTML. Tendremos que simplificarlo a: "Busca la tumba que tiene el símbolo de SUERTE."
+Enigma (real): "MI FAMILIA OCUPA UNA DE ESTAS TUMBAS Y NUESTRO SÍMBOLO SIGUE VISIBLE EN UN LATERAL. LA SUERTE SIEMPRE NOS ACOMPAÑA, ASÍ QUE ESPERO QUE A TI TAMBIÉN."
+Solución: Hay que encontrar un símbolo de "SUERTE" en una de las tumbas (ej: una herradura, un trébol...). Andreu dice: "La clave es cómo preguntas". El correo dice "la posición de la imagen va cambiando". Esto es un enigma dinámico que Typeform gestiona con sus imágenes. En HTML, tendremos que hacerlo fijo.
+Recompensa (al acertar): "¡AQUÍ DENTRO HAY ALGO! LAS TUMBAS ROMANAS SOLÍAN TENER UNA APERTURA PARA INTRODUCIR OFRENDAS... ¡Y PARECE QUE EL TESORO DE LUCIO ESTÁ AQUÍ DENTRO! ¡HAS ENCONTRADO EL TESORO DE BARCINO Y LO HAS HECHO ANTES QUE LOS SENADORES CORRUPTOS! ¡ENHORABUENA POR HABER AYUDADO A RESOLVER EL MISTERIO DE LUCIO MINICIO NATAL!"
+PREGUNTAS CLAVE PARA ACLARAR:
+Parada 2 Enigma: En el correo, la respuesta de la Parada 2 es II-XI-II-I-I. Pero en las capturas, la pregunta es de contar cosas (¿Cuántas campanas? ¿Gárgolas? ¿Ángeles?). ¿Cuál es el enigma real para la solución II-XI-II-I-I? Necesito la pregunta exacta que lleva a esa combinación de números romanos.
+Parada 5 Enigma (La Tumba): La pregunta de Typeform ("¿Cuál es la tumba? La posición de la imagen va cambiando...") es imposible de replicar en HTML estático. ¿Podrías confirmar qué símbolo de "SUERTE" tenemos que buscar en la tumba para que sea el enigma? (Ej: "Busca la tumba con el trébol de cuatro hojas" -> Solución: TREBOL).
+¿Cuántas paradas hay? El correo salta del 4 al 6, luego al 7, al 9, al 10, al 11 y al 13. ¿Son realmente 13 paradas o hay números que corresponden a preguntas de "Has llegado al lugar"? Necesito el número total exacto de enigmas que requieren una solución.
+Con estas aclaraciones, podremos empezar a programar. ¡Esto es muy interesante!

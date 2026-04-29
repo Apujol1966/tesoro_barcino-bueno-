@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Tesoro de Barcino - Selección de Idioma</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #424242;
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #b74f3b; /* Rojo del estilo Ruinas */
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #b74f3b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+            width: 200px; /* Ancho fijo para todos los botones */
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 0 #8d6e63; /* Sombra del estilo Ruinas */
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 0 #8d6e63;
+        }
+        button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #8d6e63;
+        }
+    </style>
+</head>
+<body>
+    <h1>EL TESORO DE BARCINO</h1>
+    <p>Selecciona tu idioma:</p>
+    <button onclick="seleccionarIdioma('es')">Español</button>
+    <button onclick="seleccionarIdioma('ca')">Català</button>
+    <button onclick="seleccionarIdioma('en')">English</button>
+
+    <script>
+        function seleccionarIdioma(idioma) {
+            // Guardamos la elección del idioma en la memoria del navegador
+            localStorage.setItem('idioma_preferido', idioma);
+            
+            // Redirigimos a la página de login del idioma seleccionado
+            window.location.href = `login_${idioma}.html`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+================================================================================
+PLAYGROUND RESET DOCUMENT (BIBLIA DEFINITIVA DEL PROYECTO)
+================================================================================
+
+ROL DE LA IA: Desarrollador experto en gamificación y geolocalización.
+COMPORTAMIENTO:
+- Máxima atención al detalle. Cero errores, cero inconsistencias.
+- No asumir nada. Preguntar y confirmar SIEMPRE.
+- NO GENERAR CÓDIGO NI TEXTOS COMPLETOS hasta orden expresa ("Genera fichero X", "Hazme el código").
+- Proporcionar ficheros COMPLETOS, no "parches".
+- Claridad máxima, especialmente en aspectos técnicos para usuario no informático.
+- Disculpas sinceras y autocorrección inmediata ante cualquier error o confusión.
+
+FILOSOFÍA GENERAL DE LOS JUEGOS:
+- TÍTULO GLOBAL: "El Manuscrito de Piedra" (Nombre que engloba ambos juegos).
+- UX: Mobile First, inmersión total (estética App nativa).
+- Tono: Poético, de descubrimiento, aventura histórica, gamificación.
+- Ayuda Progresiva: Pista disponible tras 3 fallos en enigma.
+- Validación Flexible: Aceptar mayúsculas/minúsculas, con/sin tildes.
+- No Competitivo por defecto, pero opción a competir.
+
+--------------------------------------------------------------------------------
+PROYECTO 1: "EL MANUSCRITO DE PIEDRA" (Ruta Gótico) - COMPLETO Y CERRADO
+--------------------------------------------------------------------------------
+Este juego ya está 100% desarrollado y pulido. Todas las paradas, enigmas, textos, animaciones y seguridad están finalizados.
+- Estado: GOLD MASTER.
+- Ruta: Cronológica (9 paradas).
+- Enigmas: BARCINO (letras), MARTI5 (torre), 1008 (romanos con V), 4171 (DAGA), 72 (Call), 2TESCUDO (Ardiaca), PADELLAS (Masónico), OCTÓGONO (Fuente), BARCELONA (Final).
+- Animación Final: Mosaico del Recuerdo con "fly-out" y respuestas visibles.
+- Seguridad: Implementada con `login.html` y `config.js`.
+
+--------------------------------------------------------------------------------
+PROYECTO 2: "EL TESORO DE BARCINO" (Ruta Romana) - OBJETIVO ACTUAL
+--------------------------------------------------------------------------------
+OBJETIVO PRINCIPAL: Migrar el contenido del juego original de tu hijo (Typeform) a nuestro formato HTML.
+
+TÍTULO OFICIAL: El Tesoro de Barcino
+PROTAGONISTA: Lucio Minicio Natal (Cónsul romano de Barcino, primer hispano olímpico, desaparecido en África).
+TRAMA: Cneo (jugador) busca el "Tesoro de Barcino" siguiendo las pistas de Lucio para evitar que senadores corruptos se hagan con él.
+
+ADAPTACIONES CLAVE PARA HTML:
+- ELIMINAR la regla de "escribir en MAYÚSCULAS".
+- INTEGRAR Ayuda Progresiva (3 fallos) y Ayuda de Navegación (Pista Directa + Mapa).
+- REEMPLAZAR preguntas de "Has llegado al lugar?" (Foto A/B) por validaciones automáticas o preguntas de observación in situ.
+- CREAR un recurso para la "Carta de Lucio" (PDF/JPG).
+
+ESTRUCTURA DE ARCHIVOS DE "EL TESORO DE BARCINO" (NUEVA):
+/ (Raíz, donde ya están los archivos del primer juego: config.js, login.html, index.html, reset.html...)
+|-- /tesoro/             <-- NUEVA CARPETA para este juego
+    |-- tesoro-portada.html
+    |-- tesoro-instrucciones.html
+    |-- tesoro-trama-inicio.html
+    |-- tesoro-trama-lucio.html
+    |-- tesoro-trama-carta1.html
+    |-- tesoro-trama-carta2.html      <-- Aquí habrá un enlace a `../recursos/carta_lucio.pdf`
+    |-- tesoro-trama-spoiler.html
+    |-- tesoro-parada1-navegacion.html
+    |-- tesoro-parada1-enigma.html
+    |-- tesoro-parada1-recompensa.html
+    |-- ... (resto de paradas)
+    |-- tesoro-final.html             <-- Pantalla final específica de este juego
+
+CONTENIDO DETALLADO DE "EL TESORO DE BARCINO" (RECOPILADO DE CAPTURAS):
+
+--- PANTALLAS DE INTRODUCCIÓN ---
+
+1.  PÁGINA: `tesoro-portada.html`
+    - Título: "EL TESORO DE BARCINO"
+    - Descripción: "DESCRIPCIÓN (OPCIONAL)"
+    - Botón: "¡EMPECEMOS!" -> Redirige a `tesoro-instrucciones.html`
+
+2.  PÁGINA: `tesoro-instrucciones.html`
+    - **Nuestra Adaptación:** Usa nuestra estructura de instrucciones mejorada, eliminando la regla de MAYÚSCULAS.
+    - Contenido:
+        - OBJETIVO: "Resuelve una serie de enigmas históricos..."
+        - AYUDA EN ENIGMAS: "Si te atascas, tras 3 fallos..."
+        - AYUDA PARA NAVEGAR: "Pista poética, Pista Directa, Mapa..."
+        - A TU RITMO... ¡O COMPITE!
+        - CONSEJO: "Brillo y batería."
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-trama-inicio.html`
+
+3.  PÁGINA: `tesoro-trama-inicio.html`
+    - Narrativa: "LUCIO MINICIO NATAL, HÉROE DE BARCINO, RECLAMA TU AYUDA PARA RECUPERAR SU TESORO Y EVITAR QUE LOS SENADORES CORRUPTOS DE LA CIUDAD SE HAGAN CON ÉL. ¿ACEPTAS EL RETO?"
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-trama-lucio.html`
+
+4.  PÁGINA: `tesoro-trama-lucio.html`
+    - Historia: "LUCIO MINICIO NATAL. EL PRIMER HISPANO EN GANAR UNOS JUEGOS OLÍMPICOS. FUE UN SENADOR Y CÓNSUL NACIDO EN BARCINO QUE PROMOVIÓ LA FUNDACIÓN DE LAS TERMAS DE LA CIUDAD... NADIE SABE DÓNDE MURIÓ... HASTA AHORA..."
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-trama-carta1.html`
+
+5.  PÁGINA: `tesoro-trama-carta1.html`
+    - Narrativa: "LO ÚLTIMO QUE SE SABE DE LUCIO ES SU ASIGNACIÓN COMO CÓNSUL DE LA PROVINCIA DE ÁFRICA. DESDE ALLÍ, UNA MISTERIOSA CARTA LLEGA A MANOS DE CNEO, SU MEJOR AMIGO, AQUÍ EN BARCINO. LA CARTA PARECE CONTENER SÍMBOLOS INSÓLITOS Y SUS PRIMERAS FRASES SON PREOCUPANTES... UTILIZA LA CARTA QUE TE HAN ENVIADO PARA GUIARTE POR EL JUEGO."
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-trama-carta2.html`
+
+6.  PÁGINA: `tesoro-trama-carta2.html`
+    - Narrativa: "ESTA ES LA CARTA DE LUCIO. LEE CON ATENCIÓN SUS PRIMERAS LÍNEAS. VE CON CUIDADO, SI LUCIO SE HA MOLESTADO EN ENCRIPTAR SU MENSAJE... DESCARGA LA CARTA QUE LUCIO ENVÍA A CNEO Y CONSÉRVALA CONTIGO..."
+    - Botón: "DESCARGAR CARTA" (Enlace a `../recursos/carta_lucio.pdf`). Un segundo botón "CONTINUAR" -> Redirige a `tesoro-trama-spoiler.html`.
+
+7.  PÁGINA: `tesoro-trama-spoiler.html`
+    - Advertencia: "¡SI NO QUIERES HACERTE UN SPOILER, DEJA DE LEER LA CARTA EN CADA PRUEBA HASTA QUE LA SUPERES!"
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-parada1-navegacion.html`
+
+---
+
+**▶️ PARADA 1: NAVEGACIÓN INICIAL (Plaça Catalunya -> Templo de Augusto)**
+
+*   **Página: `tesoro-parada1-navegacion.html`**
+    - Contenido: "ASEGÚRATE DE ESTAR EN EL LUGAR CORRECTO ANTES DE EMPEZAR." (Con imagen de Plaça Catalunya).
+    - **Pista de Salto (Original):** "DESDE EL LUGAR EN EL QUE EMPIEZA TU ANDADURA... A TRAVÉS DE LA FUENTE DE LOS MÁS INOCENTES CON SUS CESTAS Y CONTINUAR POR EL SENDERO DEL ÁNGEL... DEJA A LAS MUJERES QUE TRANSPORTAN ÁNFORAS A TU DERECHA. A BARCINO, MI CIUDAD, SU SANGRE... DONDE SIETE FIGURAS CUSTODIADAS POR EL SOL Y LA LUNA DESCANSAN EN EL SUELO, ESCRITAS CON ELLAS ENCONTRARÉIS MI ÚLTIMA VOZ."
+    - **Ubicación (para Google Maps):** "Plaça Nova, Barcelona"
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-parada1-enigma.html`
+
+*   **Página: `tesoro-parada1-enigma.html`**
+    - **Enigma (real de la carta):** "PARA VER MI MENSAJE SOLO HAY QUE SABER QUE... B = II / A = I / I = IX" (y el cifrado `I/XXII/VII/XXII/XX/XXI/IX` y `XXI/V/XIII / XVII / XII/IX`)
+    - **Solución (según Typeform):** **AUGUSTI TEMPLI**.
+    - **NOTA CRÍTICA:** Necesito el PDF de la carta para asegurar la decodificación correcta de `I/XXII/VII/XXII/XX/XXI/IX` y `XXI/V/XIII / XVII / XII/IX` a **AUGUSTI TEMPLI** usando la clave `B=II / A=I / I=IX`. Esto es esencial para que el enigma funcione.
+    - Redirige a: `tesoro-parada1-recompensa.html`
+
+*   **Página: `tesoro-parada1-recompensa.html`**
+    - Recompensa: "¡AQUÍ ES! EL ACUEDUCTO DE BARCINO FUE CONSTRUIDO EN EL SIGLO I Y MANTUVO SU FUNCIONAMIENTO HASTA EL SIGLO X. TRAÍA AGUA DESDE EL RÍO BESÓS... EL TRAMO QUE SE PUEDE VER SE ENCUENTRA EN LA PORTA PRAETORIA DE BARCINO, EN LA ACTUAL PLAÇA NOVA."
+    - Pista de Salto: Mapa (QR/LINK original) -> "UTILIZA ESTE MAPA SI LO NECESITAS AYUDA PARA LLEGAR AL TEMPLO DE AUGUSTO."
+    - **Ubicación (para Google Maps):** "Columnas Templo de Augusto, Carrer Paradís, Barcelona"
+    - Botón: "ACEPTAR" -> Redirige a `tesoro-parada2-navegacion.html`
+
+---
+
+**▶️ PARADA 2: TEMPLO DE AUGUSTO (Carrer Paradís -> Plaça del Rei)**
+
+*   **Página: `tesoro-parada2-navegacion.html`**
+    - Contenido: "POR FIN HEMOS LLEGADO AL TEMPLO DE AUGUSTO. OBSERVA LA SIGUIENTE PRUEBA DE LUCIO... PARECE QUE HAY QUE SEGUIR EL RASTRO DE UNA VIAJERA ...¿QUÉ QUERRÁ DECIR? SI EL TEMPLO ESTÁ CERRADO, UTILIZA ESTA IMAGEN COMO GUÍA" (con imagen de una columna viajera).
+    - Pregunta de Typeform: "¿HA LLEGADO AL LUGAR INDICADO? ESCOGE LA VISTA QUE TIENES DESDE EL LUGAR EN EL QUE TE ENCUENTRAS" (Opciones A y B).
+    - **Nuestra Adaptación:** Usaremos esta página como "Confirmación de Llegada" y daremos la pista para el enigma siguiente.
+    - Redirige a: `tesoro-parada2-enigma.html`
+
+*   **Página: `tesoro-parada2-enigma.html`**
+    - **Enigma (real):** "PARECE QUE LA PRIMERA PISTA DE LUCIO ES UN LUGAR… SÓLO HE DE SEGUIR SUS INDICACIONES… B = II / A = I / I = IX" (y el cifrado de la carta).
+        *   **NOTA CRÍTICA:** La solución según el correo es **II-XI-II-I-I**. Esto es un código numérico. **Necesito el PDF de la carta para encontrar el enigma que lleva a esta secuencia de números romanos.**
+    - Redirige a: `tesoro-parada2-recompensa.html`
+
+*   **Página: `tesoro-parada2-recompensa.html`**
+    - Recompensa: "¡CLARA! ¡ESO ES! MENOS MAL QUE ESTÁS AQUÍ! AHORA DEBERÍAMOS SEGUIR EL CAMINO HACIA LA SIGUIENTE PISTA. PRESTA ATENCIÓN A LA CARTA DE LUCIO ANTES DE LLEGAR AL SIGUIENTE PUNTO CLAVE."
+    - Pista de Salto (Carta): "DEBERÍAMOS SEGUIR LAS INDICACIONES DE LUCIO PARA ENCONTRAR EL SIGUIENTE PUNTO... CONFORME CAMINAS CAMINANDO POR LAS PIEDRAS DE LA ESTRECHA CALLE DE SANTA CLARA, A TU DERECHA QUEDARÁ UNA POSADA TAN ANTIGUA COMO SU NOMBRE. DE FRENTE, IMPONENTE HIERRO ENCONTRARÁS, Y SÓLO SI MIRAS A TRAVÉS DE SU OJO SABRÁS DESDE DÓNDE MIRAR VIEJAS PIEDRAS ACRISTALADAS AÚN SE CONSERVAN Y DEBERÁS MIRAR DESDE DÓNDE AÚN QUEDA ALGO TAN ANTIGUO COMO YO AHORA QUE SABES DÓNDE MIRAR. LA SIGUIENTE PISTA PODRÁS ENCONTRAR."
+    - **Ubicación (para Google Maps):** "Carrer de Santa Clara, Barcelona" (o donde esté la Fullonica).
+    - Botón: "ACEPTAR" -> Redirige a `tesoro-parada3-enigma.html`
+
+---
+
+**▶️ PARADA 3: LA FULLONICA (Carrer de Santa Clara)**
+
+*   **Página: `tesoro-parada3-enigma.html`**
+    - Enigma de Conteo (del Typeform): "¿Cuántas campanas puedes ver? ¿Cuántas gárgolas puedes contar en el edificio donde se guardan los DOCUMENTOS DE ARAGÓN? ¿Cuántos ÁNGELES hacen falta para sostener el ESCUDO EN UNA ESQUINA? ¿Cuántas estatuas coronan la catedral? ¿Cuántas FUENTES dan agua a la plaza?"
+    - **NOTA CRÍTICA:** El correo dice que la solución de la Parada 3 es **"PLAZA SANT MIQUEL"**. Esto es una fuerte inconsistencia. **Las preguntas de conteo NO dan "PLAZA SANT MIQUEL".**
+    - **NECESITO ACLARACIÓN:**
+        *   ¿Son las preguntas de conteo un enigma en sí mismo con una solución numérica?
+        *   ¿O es "PLAZA SANT MIQUEL" la respuesta a una pregunta oculta en la carta?
+    - **Nuestra Adaptación:** Si las preguntas de conteo son un enigma, la solución debería ser una secuencia numérica. Si "PLAZA SANT MIQUEL" es la solución, la pregunta debería ser: "¿Qué plaza se menciona en la carta como punto de reunión?". **¡Es crucial saber esto!**
+    - Redirige a: `tesoro-parada3-recompensa.html`
+
+*   **Página: `tesoro-parada3-recompensa.html`**
+    - Recompensa: "¡ESTAMOS JUSTO EN EL LUGAR! ... ESTÁS EN EL ANTIGUO BARRIO DE BARCINO DONDE SE ENCONTRABA LA 'FULLONICA' DE LA CIUDAD... ORINA HUMANA. DE AHÍ EL OLOR. CÓMO CAMBIAN LOS TIEMPOS, ¿EH?"
+    - Pista de Salto (Carta + Cifrado): "COMPROBEMOS SI ESTAMOS EN LO CIERTO... DESCIFRA EL CÓDIGO UTILIZANDO LAS PISTAS QUE LUCIO TE HA DEJADO EN SU CARTA"
+    - **Ubicación (para Google Maps):** "Plaça Sant Miquel, Barcelona"
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-parada4-enigma.html`
+
+---
+
+**▶️ PARADA 4: CÓDIGO CÉSAR (Plaça Sant Miquel)**
+
+*   **Página: `tesoro-parada4-enigma.html`**
+    - Enigma: `CLAVE G --> A = 6ª` y `PCU - NYKOFWMUF - MJGUHU` (Cifrado César).
+    - **Solución (según correo):** **VIA SEPULCRAL ROMANA**.
+    - Redirige a: `tesoro-parada4-recompensa.html`
+
+*   **Página: `tesoro-parada4-recompensa.html`**
+    - Recompensa: "¡ESO ES! ¡CÓMO NO HABÍA CAÍDO! ¡LA VÍA SEPULCRAL ROMANA DE BARCINO! EL MENSAJE QUE ACABAS DE DESCIFRAR SE CONOCE COMO 'CÓDIGO CÉSAR': ES UN MECANISMO DE MENSAJERÍA SECRETO..."
+    - Pista de Salto (Carta + Mapa): "DIRÍGETE A LA VÍA SEPULCRAL ROMANA DE BARCINO PARA LA ÚLTIMA PRUEBA. VIGILA TUS ESPALDAS... USA EL MAPA QUE ENCONTRARÁS EN EL QR O EN ESTE ENLACE".
+    - **Ubicación (para Google Maps):** "Plaça de la Vila de Madrid, Barcelona"
+    - Botón: "CONTINUAR" -> Redirige a `tesoro-parada5-navegacion.html`
+
+---
+
+**▶️ PARADA 5: LA TUMBA (Vía Sepulcral Romana, ubicación específica)**
+
+*   **Página: `tesoro-parada5-navegacion.html`**
+    - Contenido: Pregunta de Typeform: "¿HA LLEGADO AL LUGAR INDICADO? ESCOGE LA VISTA QUE TIENES DESDE EL LUGAR EN EL QUE TE ENCUENTRAS" (Con fotos A y B de la Vía Sepulcral).
+    - **Nuestra Adaptación:** Página para confirmar la llegada y dar la pista al enigma final.
+    - Redirige a: `tesoro-parada5-enigma.html`
+
+*   **Página: `tesoro-parada5-enigma.html`**
+    - **Enigma Final (real):** "MI FAMILIA OCUPA UNA DE ESTAS TUMBAS Y NUESTRO SÍMBOLO SIGUE VISIBLE EN UN LATERAL. LA SUERTE SIEMPRE NOS ACOMPAÑA... ¿ERES CAPAZ DE VERNOS?"
+    - **Solución (según tu aclaración):** **TRÉBOL**.
+    - **Nuestra Adaptación:** El enigma será: "Busca la tumba con el símbolo de la SUERTE de la familia Minicio. ¿Qué figura es?" -> Solución: TRÉBOL.
+    - Redirige a: `tesoro-parada5-recompensa.html`
+
+*   **Página: `tesoro-parada5-recompensa.html`**
+    - Recompensa: "¡AQUÍ DENTRO HAY ALGO! LAS TUMBAS ROMANAS SOLÍAN TENER UNA APERTURA PARA INTRODUCIR OFRENDAS... ¡Y PARECE QUE EL TESORO DE LUCIO ESTÁ AQUÍ DENTRO!"
+    - **Final del Juego:** "¡HAS ENCONTRADO EL TESORO DE BARCINO Y LO HAS HECHO ANTES QUE LOS SENADORES CORRUPTOS! ¡ENHORABUENA POR HABER AYUDADO A RESOLVER EL MISTERIO DE LUCIO MINICIO NATAL! ¡SI QUIERES CONSEGUIR UN 10% DE DESCUENTO PARA TI O TUS AMIGOS EN NUESTRA WEB, DÉJANOS UNA RESEÑA EN GOOGLE!"
+    - **Acción Final:** Botón que finaliza el juego y redirige a la página principal de Otium o a una página de agradecimiento.
+
+---
+
+### **PENDIENTE CRÍTICO: PDF DE LA CARTA**
+
+El PDF de la carta es **indispensable**. Sin él, no puedo decodificar los enigmas ni extraer las pistas que Lucio da para cada paso.
+
+**Cuando tengas el PDF, avísame.** Entonces podré resolver las **inconsistencias** de las Paradas 1, 2 y 3 y generar el código.

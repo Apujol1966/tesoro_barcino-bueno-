@@ -1,0 +1,44 @@
+/ (Raíz del Proyecto - Donde ya vive "El Manuscrito de Piedra")
+│
+├── index.html                  (Selector de juegos global - Ya existente)
+├── config.js                   (Configuración global - Ya existente)
+├── css/                        (Estilos compartidos)
+├── js/                         (Scripts compartidos)
+├── recursos/                   (Carpeta de medios compartida)
+│   └── carta_lucio.pdf         <-- [CRÍTICO] El PDF de la carta debe estar aquí
+│
+└── tesoro/                     <-- NUEVA CARPETA (Todo el juego 2 aquí)
+    │
+    ├── tesoro-data.js          <-- [CEREBRO] Contiene las respuestas y pistas verificadas
+    ├── tesoro-logic.js         <-- Lógica específica para este juego
+    │
+    ├── 00-portada.html         (Título y botón "Empezar")
+    ├── 01-instrucciones.html   (Reglas: sin mayúsculas, ayuda progresiva)
+    │
+    ├── trama-01-inicio.html    (Intro: Lucio Minicio Natal reclama ayuda)
+    ├── trama-02-lucio.html     (Contexto histórico: El primer hispano olímpico)
+    ├── trama-03-carta1.html    (Narrativa: Llega la carta misteriosa)
+    ├── trama-04-carta2.html    (Descarga del PDF: carta_lucio.pdf)
+    ├── trama-05-spoiler.html   (Advertencia de no leer por adelantado)
+    │
+    ├── p1-navegacion.html      (Ir a: Plaça Nova / Acueducto)
+    ├── p1-enigma.html          (Input: AUGUSTI TEMPLI)
+    ├── p1-recompensa.html      (Historia: Acueducto + Info Templo)
+    │
+    ├── p2-navegacion.html      (Ir a: Templo de Augusto)
+    ├── p2-enigma.html          (Input: COLUMNA / UNA COLUMNA)
+    ├── p2-recompensa.html      (Historia: Templo + Pista "Santa Clara")
+    │
+    ├── p3-navegacion.html      (Ir a: Carrer Santa Clara / Muralla)
+    ├── p3-enigma.html          (Preguntas Conteo -> Pigpen -> Input: PLAZA SANT MIQUEL)
+    ├── p3-recompensa.html      (Historia: Fullonica + Muralla)
+    │
+    ├── p4-navegacion.html      (Ir a: Plaça Sant Miquel)
+    ├── p4-enigma.html          (César +6 -> Input: VIA SEPULCRAL ROMANA)
+    ├── p4-recompensa.html      (Historia: Vía Sepulcral)
+    │
+    ├── p5-navegacion.html      (Ir a: Vía Sepulcral / Tumbas)
+    ├── p5-enigma.html          (Input: TREBOL / EL TREBOL)
+    ├── p5-final.html           (Enhorabuena, Descuento y Fin)
+    │
+    └── tesoro-estilos.css      (Estilos específicos si se requieren ajustes sobre el global)

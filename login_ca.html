@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accés - El Tresor de Barcino (CA)</title>
+    
+    <script src="config.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #424242; --text-main: #e0e0e0; --acento: #b74f3b; --error: #c0392b; }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: 'Lato', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; }
+        
+        h1 { font-family: 'Cinzel', serif; color: var(--acento); margin-bottom: 20px; font-size: 1.8rem; line-height: 1.4; }
+        h1 span { display: block; margin-top: 5px; font-size: 0.7em; color: #ccc; }
+        
+        .instructions { font-size: 1rem; color: #aaa; margin-bottom: 30px; line-height: 1.6; }
+        .instructions span { display: block; margin-bottom: 5px; }
+        
+        .login-box { 
+            background: rgba(30,30,30,0.9);
+            padding: 30px; 
+            border-radius: 10px; 
+            border: 1px solid var(--acento); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 320px;
+        }
+
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            font-size: 1.2rem; 
+            text-align: center; 
+            border-radius: 5px; 
+            border: 2px solid var(--acento); 
+            background: #2a2a2a;
+            color: var(--text-main);
+            box-sizing: border-box; 
+            margin-bottom: 20px;
+            font-family: 'Roboto Slab', serif;
+            text-transform: uppercase;
+        }
+        
+        button { 
+            width: 100%;
+            padding: 15px; 
+            font-size: 1rem; 
+            font-weight: bold; 
+            background-color: var(--acento); 
+            color: #000;
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            font-family: 'Roboto Slab', serif;
+            transition: transform 0.2s;
+        }
+        button:active { transform: scale(0.98); }
+
+        #error { 
+            color: var(--error); 
+            margin-top: 15px; 
+            display: none; 
+            font-weight: bold; 
+            font-size: 0.9rem;
+        }
+        
+        @keyframes shake { 0% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } 100% { transform: translateX(0); } }
+    </style>
+</head>
+<body>
+
+    <h1>
+        EL TRESOR DE BARCINO
+    </h1>
+    
+    <div class="login-box">
+        <div class="instructions">
+            <span>Introdueix el codi d'accés:</span>
+        </div>
+    
+        <input type="text" id="password" placeholder="CODI">
+        <button onclick="entrar()">ENTRAR</button>
+        
+        <div id="error">
+            Codi incorrecte
+        </div>
+    </div>
+
+    <script>
+        function entrar() {
+            const input = document.getElementById('password').value.trim().toUpperCase();
+            
+            if (typeof CLAVE_ACTUAL !== 'undefined' && input === CLAVE_ACTUAL) {
+                localStorage.setItem('clave_guardada', input);
+                localStorage.setItem('idioma_preferido', 'ca'); // Guarda el idioma 'ca'
+                window.location.href = 'tesoro/01-instruccions_ca.html'; // Redirige a la página de instrucciones en catalán
+            } else {
+                const errorDiv = document.getElementById('error');
+                errorDiv.style.display = 'block';
+                const box = document.querySelector('.login-box');
+                box.style.animation = "shake 0.3s";
+                setTimeout(() => box.style.animation = "", 300);
+            }
+        }
+        
+        document.getElementById("password").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") entrar();
+        });
+    </script>
+</body>
+</html>
