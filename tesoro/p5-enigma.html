@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 5: Los Guardianes de la Historia</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>La Morada Eterna</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <!-- Foto de la placa metálica de la Vía Sepulcral -->
+            <img src="../recursos/p5-enigma.jpg" alt="Entrada a la Vía Sepulcral">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.1rem; color: var(--color-acento-rojo-quemado);"><strong>Has llegado al límite del tiempo.</strong></p>
+
+            <!-- TEXTO DE LA CARTA (Comillas agrupadas) -->
+            <div style="border-top: 1px solid var(--color-acento-tierra); padding-top: 15px; font-style: italic;">
+                <p>"Has llegado al límite de la ciudad antigua, donde el ruido de tu tiempo se detiene ante el silencio de mis ancestros.</p>
+                
+                <p>Un gran muro de metal oxidado guarda ahora la entrada a nuestra morada eterna. En él, los hombres de tu siglo han grabado las siglas de aquellos que hoy custodian mi historia y los secretos de Barcino. Si estás frente a la puerta, las verás brillar en el metal."</p>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Escribe las 5 letras...">
+        </div>
+
+        <div class="navigation-controls">
+            <!-- VALIDAMOS Y AVANZAMOS AL ENIGMA FINAL (El Trébol) -->
+            <button class="btn" onclick="comprobarRespuesta()">COMPROBAR</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Ese no es el acrónimo correcto. Mira bien las letras en la placa de metal.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Busca las letras más grandes que aparecen en la placa de acero oxidado, justo debajo de "VIA SEPULCRAL ROMANA". Es el nombre del Museo de Historia de Barcelona.
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.trim().toUpperCase();
+
+            // SOLUCIÓN: MUHBA
+            if (respuestaLimpia === "MUHBA") {
+                // CORRECTO: Vamos al enigma final de la tumba
+                avanzarA('p5-recompensa');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+
+        // LÓGICA DEL MASTER
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

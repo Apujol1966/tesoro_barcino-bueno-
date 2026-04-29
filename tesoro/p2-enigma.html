@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 2: La Cima</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>La Cima de Barcino</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-enigma.jpg" alt="Placa del Mont Tàber">
+        </div>
+
+        <div class="narrativa">
+            <p>Has llegado al número 10 de Carrer Paradís, la sede del <strong>Centre Excursionista de Catalunya</strong>.</p>
+
+            <p>Antes de seguir adelante, mira al suelo de la entrada. Esa <strong>piedra de molino</strong> no es una simple decoración. Es el <strong>marcador geográfico</strong> que señala la cima exacta del Monte Táber.</p>
+            
+            <p>Estás pisando el 'techo' de la antigua Barcino, el punto exacto donde los romanos decidieron alzar su templo más importante.</p>
+            
+            <p>Ahora, para demostrar que estás aquí, mira la placa metálica de la pared.</p>
+            
+            <p><strong>¿A qué altura exacta (en metros) indica la placa que nos encontramos?</strong></p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Ej: 10,5">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarRespuesta()">COMPROBAR ALTURA</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Esa no es la altura correcta. Mira bien los números.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Busca un óvalo metálico en la pared de la entrada. El número tiene una coma decimal.
+        </div>
+        
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.toLowerCase().trim().replace('m', '').replace('mts', '').replace('.', ',').trim();
+
+            if (respuestaLimpia === "16,9" || respuestaLimpia === "16,90") {
+                // CAMBIO AQUÍ: GUARDAMOS PROGRESO
+                avanzarA('p2-recompensa');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 2: El Temple Amagat</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); display: none; 
+            align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center;
+            width: 100%; max-width: 400px;
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input {
+            width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a;
+            border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box;
+        }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL GUARDIÀ -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Demostra la teva atenció</h3>
+            <p>Abans de mostrar-te el camí, respon:</p>
+            <p><em>"Quin edifici principal es trobava al fòrum de la colònia?"</em></p>
+            
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escriu la teva resposta">
+            
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancel·lar</button>
+            
+            <div id="guardian-error" class="error-msg">Resposta incorrecta. Llegeix de nou el text principal.</div>
+        </div>
+    </div>
+
+    <!-- MODAL DEL MÀSTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Telèfon / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>Cap al Temple</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-templo.jpg" alt="Carreró del barri gòtic">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>EXACTE! EL TEMPLE D'AUGUST.</strong></p>
+            
+            <div style="background-color: rgba(255, 255, 255, 0.08); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem;">
+                <p style="margin-top: 0;"><strong>🏛️ Arxius de la Ciutat:</strong></p>
+                <p>El Temple d'August de Barcino es va construir al segle I per al culte imperial a Cèsar August, qui va donar permís per fundar la colònia de Barcino.</p>
+                <p style="margin-bottom: 0;">El temple s'erigia sobre el Fòrum, a l'actual Barri Gòtic, en el punt més alt del Mont Tàber.</p>
+            </div>
+            
+            <p>Troba'l per seguir el camí que Luci ens ha deixat!</p>
+        </div>
+
+        <div style="width: 100%; margin-bottom: 20px; text-align: center;">
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 Estic perdut (Demanar Ajuda)</button>
+            
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
+                <p><strong>Pista de Navegació:</strong></p>
+                <p>Busca el <strong>Carrer Paradís</strong>, al punt més alt del Barri Gòtic, al costat de la Plaça Sant Jaume. Dins d'un petit pati interior, trobaràs el cor de l'antiga ciutat.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Temple+d%27August+barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VEURE MAPA</a>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- USO DE avanzarA() -->
+            <button class="btn" onclick="avanzarA('p2-enigma')">HE ARRIBAT AL TEMPLE</button>
+            
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
+
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
+
+        function checkGuardianAnswer() {
+            let resposta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (resposta.includes("TEMPLE") || resposta.includes("TEMPLO")) {
+                closeGuardianModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none';
+            } else {
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
+            }
+        }
+    </script>
+</body>
+</html>

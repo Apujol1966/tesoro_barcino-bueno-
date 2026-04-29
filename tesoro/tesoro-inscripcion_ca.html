@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Llegat de Pedra</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .imagen-marco { width: 100%; height: auto; max-height: 70vh; background-color: #000; border: 2px solid var(--color-acento-tierra); display: flex; justify-content: center; align-items: center; overflow: hidden; margin-bottom: 20px; }
+        .imagen-marco img { width: 100%; height: auto; max-height: 70vh; object-fit: contain; display: block; }
+        .translation-box { background-color: rgba(0,0,0,0.4); border: 1px solid var(--color-acento-tierra); padding: 20px; margin: 20px 0; text-align: left; border-radius: 4px; }
+        .translation-box h2 { font-family: var(--fuente-titulo); color: var(--color-acento-rojo-quemado); font-size: 1.2rem; margin-top: 0; text-align: center; }
+        .cargo-item { margin-bottom: 15px; border-bottom: 1px solid rgba(141, 110, 99, 0.3); padding-bottom: 5px; }
+        .cargo-item:last-child { border-bottom: none; }
+        .cargo-titulo { font-weight: bold; color: #d4af37; display: block; text-transform: uppercase; font-size: 0.9rem; }
+        .cargo-desc { font-size: 0.85rem; color: #ccc; line-height: 1.3; }
+        .link-google { color: #d4af37; text-decoration: underline; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte, contacta directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">WhatsApp: 664 252 723</p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
+        </div>
+    </div>
+    <header class="header"><h1>La Pedra de la Glòria</h1></header>
+    <div class="container">
+        <div class="imagen-marco"><img src="../recursos/p5-inscripcion.jpg" alt="Inscripció real"></div>
+        <div class="narrativa">
+            <p>"Observa amb atenció, ciutadà. Aquest és el meu veritable llegat, el tresor que has rescatat de les mans negres d'aquells que volien esborrar-lo per sempre. Aquesta pedra no és ficció; és la meva història real, gravada en marbre fa gairebé dos mil anys."</p>
+            <div class="translation-box">
+                <h2>A LUCI MINICI NATAL</h2>
+                <p style="text-align: center; font-size: 0.8rem; margin-top: -10px; color: #aaa;">Cuadronio Vero Junior</p>
+                <div class="cargo-item"><span class="cargo-titulo">Cònsul i Àugur de Roma</span><span class="cargo-desc">Màxims honors polítics i religiosos de l'Imperi.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Procònsul de la Província d'Àfrica</span><span class="cargo-desc">Càrrec des del qual va escriure la carta que has desxifrat.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Llegat de l'Emperador a Mèsia Inferior</span><span class="cargo-desc">Governador i comandant militar a la frontera del Danubi.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Curador d'Obres Públiques i Temples</span><span class="cargo-desc">Encarregat de la bellesa i solidesa dels monuments de la capital del món.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Llegat de la Legió VI Victrix a Britànnia</span><span class="cargo-desc">Comandant d'una de les legions més temudes a les terres del nord.</span></div>
+            </div>
+            <p style="font-style: italic;">"Vaig recórrer el món des de Britànnia fins a l'Àfrica, però el meu major orgull va ser néixer i ser recordat a la meva estimada <strong>Barcino</strong>."</p>
+        </div>
+        <div class="navigation-controls" style="margin-bottom: 30px;">
+            <button class="btn" onclick="avanzarA('tesoro-biografia')" style="background-color: var(--color-acento-tierra);">📜 LLEGEIX LA SEVA BIOGRAFIA</button>
+        </div>
+        <div style="background-color: rgba(183, 79, 59, 0.1); padding: 20px; border-radius: 8px; border: 1px dashed var(--color-acento-rojo-quemado); text-align: center; margin: 30px 0;">
+            <p style="margin-top: 0; color: #d4af37;"><strong>¡Missió complerta, ciutadà!</strong></p>
+            <p style="font-size: 0.95rem;">Has salvat el Tresor de Barcino. Si t'ha agradat l'aventura, ajuda'ns amb una <a href="https://g.page/r/CWyNVR5O9gRyEBE/review" target="_blank" class="link-google">ressenya a Google</a>.</p>
+            <p style="font-size: 1rem; color: #fff; margin-top: 20px;">El teu pròxim desafiament t'espera al Barri Gòtic:</p>
+            <p style="font-size: 1.2rem; color: var(--color-acento-rojo-quemado); font-family: var(--fuente-titulo); margin: 5px 0;"><strong>EL MANUSCRIT DE PEDRA</strong></p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">Fes servir aquest codi per obtenir un <strong>10% de descompte</strong>:</p>
+            <p style="font-size: 1.4rem; color: #d4af37; font-family: var(--fuente-titulo); margin: 10px 0;"><strong>BARCINO10</strong></p>
+        </div>
+        <div class="navigation-controls">
+            <button class="btn" onclick="localStorage.removeItem('progresoJuego'); window.location.href='tesoro-despedida.html';">FINALITZAR AVENTURA</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
+        </div>
+    </div>
+    <script src="candado.js"></script>
+</body>
+</html>

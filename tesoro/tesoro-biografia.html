@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biografía de Lucio Minicio Natal</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    <script src="candado.js"></script>
+    <style>
+        .bio-section { background-color: rgba(0,0,0,0.3); border: 1px solid var(--color-acento-tierra); padding: 20px; margin-bottom: 20px; border-radius: 4px; }
+        .bio-section h2 { font-family: var(--fuente-titulo); color: var(--color-acento-rojo-quemado); font-size: 1.3rem; margin-top: 0; border-bottom: 1px solid var(--color-acento-tierra); padding-bottom: 10px; }
+        .bio-section p { font-size: 0.95rem; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes incidencias o dudas técnicas, contacta directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">WhatsApp: 664 252 723</p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>Vida de un Campeón</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="bio-section">
+            <h2>El Primer Campeón Olímpico de Barcino</h2>
+            <p>Nacido en los idus de febrero del año 96 d.C. en Barcino, Lucio alcanzó la gloria eterna en el año <strong>129 d.C.</strong> durante la 227ª Olimpiada. Ganó la carrera de cuadrigas con una maestría que le valió el primer laurel olímpico para un barcelonés.</p>
+            <p>Su victoria fue tan legendaria que repartió 33 placas honoríficas por Europa. Hoy, su honor sigue vivo: la Generalitat otorga la <strong>'Medalla Luci Minici'</strong> a deportistas olímpicos catalanes, y su nombre preside el paseo principal del <strong>Anillo Olímpico de Montjuïc</strong>.</p>
+        </div>
+
+        <div class="bio-section">
+            <h2>Una Vida al Servicio del Imperio</h2>
+            <p>Lucio desempeñó una carrera política y militar asombrosa. Sirvió en las legiones de Dacia, Mesia y Panonia, y fue <strong>Legado de la Legión VI Victrix en Britania</strong>. Fue Cónsul de Roma y finalmente <strong>Procónsul de África</strong>, cargo desde el cual escribió la carta que has descifrado. También fue nombrado <strong>Augur</strong>, una de las dignidades religiosas más altas del Imperio.</p>
+        </div>
+
+        <div class="bio-section">
+            <h2>El Gran Mecenas de Barcino</h2>
+            <p>En el año 125 d.C., donó a Barcino unas espectaculares <strong>Termas Públicas</strong> construidas en sus propios terrenos. Hoy sabemos que esas termas descansan bajo los cimientos de la actual <strong>Plaça de Sant Miquel</strong>. Su amor por Barcino era tal que legó una fortuna para asegurar donaciones anuales a sus conciudadanos en el aniversario de su nacimiento.</p>
+        </div>
+
+        <div class="bio-section">
+            <h2>Sus Huellas Hoy</h2>
+            <p>- El <strong>Pedestal de Honor</strong> real se custodia en el <strong>MUHBA</strong>.</p>
+            <p>- En la <strong>Plaça de Sant Miquel</strong> se ven restos de sus baños y hogar.</p>
+            <p>- En Montjuïc, el <strong>Passeig de Minici Natal</strong> recuerda su hazaña olímpica.</p>
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="history.back()">VOLVER</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+    <script>
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Cor Sagrat</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            display: none; align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center;
+            width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MÀSTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Telèfon / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Següent Fragment</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p1-recompensa.jpg" alt="Detall de l'Aqüeducte">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>Exacte! Són DOS arcs.</strong></p>
+            
+            <p><strong>Ets davant la porta per on entrava l'aigua, la sang de la ciutat.</strong></p>
+            
+            <div style="background-color: rgba(255, 255, 255, 0.08); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem;">
+                <p style="margin-top: 0;"><strong>🏛️ Arxius de la Ciutat:</strong></p>
+                <p>Les venes de pedra que veus davant teu són vestigis d'un miracle de l'enginyeria. Aquest aqüeducte, construït al segle I, va transportar l'aigua del riu Besòs des de Montcada durant més de nou segles, mantenint viva Barcino molt després de la caiguda de Roma.</p>
+            </div>
+
+            <p>Però el tresor no és aquí, a la vista de tothom. És al lloc més sagrat.</p>
+            <p>Utilitza la clau per saber el camí a seguir:</p>
+            
+            <p style="text-align: center; color: var(--color-acento-rojo-quemado);"><strong>B = II &nbsp; | &nbsp; A = I &nbsp; | &nbsp; I = IX</strong></p>
+            
+            <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 4px; text-align: center; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--color-acento-tierra); letter-spacing: 1px;">
+                I / XXII / VII / XXII / XX / XXI / IX
+                <br><br>
+                -
+                <br><br>
+                XXI / V / XIII / XVII / XII / IX
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Desxifra la destinació...">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarRespuesta()">ANAR AL SEGÜENT LLOC</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">El codi és incorrecte. Revisa les lletres.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> És un xifratge simple. Cada número romà correspon a una posició a l'abecedari. I (1) és A, V (5) és E...
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respostaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (respostaLimpia === "AUGUSTI TEMPLI" || 
+                respostaLimpia === "AUGUSTITEMPLI" || 
+                respostaLimpia.includes("TEMPLE D'AUGUST") ||
+                respostaLimpia.includes("TEMPLE DE AUGUST")) {
+                
+                avanzarA('p2-navegacion');
+                
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

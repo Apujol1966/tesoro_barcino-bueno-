@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Tresor de Barcino</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+</head>
+<body>
+
+    <!-- MODAL CONTINUAR PARTIDA -->
+    <div id="continue-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; justify-content:center; align-items:center; flex-direction:column; padding: 20px;">
+        <div class="container" style="text-align:center; border-color: #fff;">
+            <h2 style="color: var(--color-acento-rojo-quemado); margin-top:0;">Partida Detectada!</h2>
+            <p style="margin-bottom:20px;">Sembla que ja havies començat la cerca.</p>
+            <button class="btn" id="btn-continuar" style="margin-bottom:15px;">CONTINUAR ON HO VAIG DEIXAR</button>
+            <button class="hint-btn" id="btn-reiniciar">COMENÇAR DE ZERO</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>La Carta d'Àfrica</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/trama-lucio-inicio.jpg" alt="Estàtua de Luci Minici Natal">
+        </div>
+
+        <div class="narrativa">
+            <p><strong>"Salut, ciutadà! Si llegeixes això, la deessa Fortuna ha volgut que siguis la meva última esperança.</strong></p>
+            <p>El meu nom és <strong>Luci Minici Natal</strong>. Les pedres de <strong>Barcino</strong> expliquen la meva història: vaig ser el primer hispà a guanyar el llorer olímpic amb la meva quadriga (129 dC) i vaig regalar a la ciutat les seves grandioses termes.</p>
+            <p>T'escric des d'<strong>Àfrica</strong>, on serveixo a Roma com a procònsol. La meva vida i el meu llegat corren perill. Si aquesta carta t'ha arribat, potser ja és tard per a mi. Des d'aquí, les meves mans estan lligades, però notícies fosques arriben a les meves orelles: senadors corruptes conspiren per saquejar el tresor que vaig amagar, disposat per protegir el futur de Barcino.</p>
+            <p>He encriptat la ubicació del Tresor en aquesta carta. Només algú amb astúcia i honor podrà desxifrar-la abans que sigui massa tard.</p>
+            <p><strong>El destí del meu llegat és ara a les teves mans".</strong></p>
+            <p><strong>Acceptes el desafiament?</strong></p>
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="empezarJuego()">ACCEPTA EL REPTE</button>
+            <button class="hint-btn" onclick="openMasterModal()">🆘 Necessito Ajuda</button>
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let paginaGuardada = localStorage.getItem('progresoJuego');
+            if (paginaGuardada) {
+                let modal = document.getElementById('continue-modal');
+                modal.style.display = 'flex';
+                document.getElementById('btn-continuar').onclick = function() { window.location.href = paginaGuardada; };
+                document.getElementById('btn-reiniciar').onclick = function() { localStorage.removeItem('progresoJuego'); modal.style.display = 'none'; };
+            }
+        });
+
+        function empezarJuego() {
+            let primeraParada = "p1-navegacion_ca.html";
+            localStorage.setItem('progresoJuego', primeraParada);
+            window.location.href = primeraParada;
+        }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Instructions - The Treasure of Barcino</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    
+    <style>
+        .instructions-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .instructions-list li { position: relative; padding-left: 30px; margin-bottom: 25px; line-height: 1.5; }
+        .instructions-list li:last-child { margin-bottom: 0; }
+        .instructions-list li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--color-acento-rojo-quemado); font-weight: bold; font-size: 1.3rem; }
+        .instructions-list strong { display: block; color: var(--color-acento-rojo-quemado); font-family: var(--fuente-titulo); margin-bottom: 5px; font-size: 1.1rem; text-transform: uppercase; text-shadow: 1px 1px 1px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Before You Begin</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="narrativa">
+            <ul class="instructions-list">
+                <li>
+                    <strong>YOUR MISSION</strong>
+                    Solve historical riddles and follow Lucio's clues to discover the Treasure of Barcino.
+                </li>
+                <li>
+                    <strong>RIDDLE HELP</strong>
+                    If you get stuck on a puzzle, don't worry! After 3 failed attempts, a help button will appear.
+                </li>
+                <li>
+                    <strong>NAVIGATION HELP</strong>
+                    To get from one stop to another, we'll give you a clue. If that's not enough, by passing small attention tests, you can unlock a Direct Clue and a Map.
+                </li>
+                <li>
+                    <strong>PLAY AT YOUR OWN PACE... OR COMPETE!</strong>
+                    Enjoy the walk without a hurry... or challenge your friends to see who deciphers the mystery first!
+                </li>
+                <li>
+                    <strong>DIRECT HELP</strong>
+                    If at any time you have a technical problem or a question about the game, contact us by pressing the "I Need Help" button at the bottom of this page.
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="window.location.href='00-portada_en.html'">UNDERSTOOD, LET'S PLAY!</button>
+            <button class="hint-btn" onclick="openMasterModal()">🆘 I Need Help</button>
+        </div>
+
+    </div>
+
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Phone / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+
+    <script src="candado.js"></script>
+    <script>
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

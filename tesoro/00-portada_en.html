@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Treasure of Barcino</title>
+    <!-- Game Styles -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuration -->
+    <script src="../config.js"></script>
+</head>
+<body>
+
+    <!-- MODAL TO CONTINUE GAME -->
+    <div id="continue-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; justify-content:center; align-items:center; flex-direction:column; padding: 20px;">
+        <div class="container" style="text-align:center; border-color: #fff;">
+            <h2 style="color: var(--color-acento-rojo-quemado); margin-top:0;">Game Detected!</h2>
+            <p style="margin-bottom:20px;">It seems you have already started the quest.</p>
+            <button class="btn" id="btn-continuar" style="margin-bottom:15px;">CONTINUE WHERE I LEFT OFF</button>
+            <button class="hint-btn" id="btn-reiniciar">START FROM SCRATCH</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>The Letter from Africa</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/trama-lucio-inicio.jpg" alt="Statue of Lucius Minicius Natalis">
+        </div>
+
+        <!-- NARRATIVE -->
+        <div class="narrativa">
+            <p><strong>"Hail, citizen! If you are reading this, the goddess Fortuna has willed you to be my last hope.</strong></p>
+            
+            <p>My name is <strong>Lucius Minicius Natalis</strong>. The stones of <strong>Barcino</strong> tell my story: I was the first Hispanic to win the Olympic laurel with my quadriga (129 A.D.) and I gifted the city its magnificent baths.</p>
+            
+            <p>I write to you from <strong>Africa</strong>, where I serve Rome as a proconsul. My life and my legacy are in danger. If this letter has reached you, it may already be too late for me. From here, my hands are tied, but dark news reaches my ears: corrupt senators conspire to plunder the treasure I hid, set aside to protect the future of Barcino.</p>
+            
+            <p>I have encrypted the location of the Treasure in this letter. Only someone with cunning and honor can decipher it before it is too late.</p>
+            
+            <p><strong>The fate of my legacy is now in your hands."</strong></p>
+            <p><strong>Do you accept the challenge?</strong></p>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- On click, go to the first stop -->
+            <button class="btn" onclick="empezarJuego()">I ACCEPT THE CHALLENGE</button>
+             <!-- Button to open the help modal -->
+             <button class="hint-btn" onclick="openMasterModal()">🆘 I Need Help</button>
+        </div>
+
+    </div>
+
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Phone / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        // Logic to Continue Game
+        document.addEventListener("DOMContentLoaded", function() {
+            let savedPage = localStorage.getItem('progresoJuego');
+            if (savedPage) {
+                let modal = document.getElementById('continue-modal');
+                modal.style.display = 'flex';
+                document.getElementById('btn-continuar').onclick = function() { window.location.href = savedPage; };
+                document.getElementById('btn-reiniciar').onclick = function() { localStorage.removeItem('progresoJuego'); modal.style.display = 'none'; };
+            }
+        });
+
+        function empezarJuego() {
+            // We save that we are starting and go to Stop 1
+            let firstStop = "p1-navegacion_en.html";
+            localStorage.setItem('progresoJuego', firstStop);
+            window.location.href = firstStop;
+        }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

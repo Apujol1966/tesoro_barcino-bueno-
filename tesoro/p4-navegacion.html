@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 4: El Vapor de Barcino</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input { width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a; border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box; }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL GUARDIÁN -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Demuestra tu atención</h3>
+            <p>Según este fragmento de mi carta, ¿quién ordenó construir las termas?</p>
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe tu respuesta">
+            
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancelar</button>
+            
+            <div id="guardian-error" class="error-msg">Incorrecto. Lee de nuevo el fragmento de la carta.</div>
+        </div>
+    </div>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>Rumbo a las Termas</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p4-camino.jpg" alt="Calles de Barcino">
+        </div>
+
+        <!-- TEXTO DE LA CARTA -->
+        <div class="narrativa" style="font-style: italic;">
+            <p>"Cruza ahora el corazón de la ciudad hacia el lugar donde el vapor y el agua reconfortaban el cuerpo tras la fatiga. Mi padre y yo alzamos allí las Termas de Barcino para orgullo de la colonia.</p>
+            
+            <p>Buscad la plaza que se esconde tras el gran palacio del gobierno de la ciudad. Allí donde la historia se sumerge bajo el suelo, os espero."</p>
+        </div>
+
+        <div style="width: 100%; margin-bottom: 20px; text-align: center;">
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 No sé por dónde ir (Ayuda)</button>
+            
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px; font-style: normal;">
+                <p><strong>Pista de Navegación:</strong></p>
+                <p>Cruza la Plaza Sant Jaume y pasa por detrás del edificio del Ayuntamiento (Casa de la Ciutat). Llegarás a la <strong>Plaça de Sant Miquel</strong>.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Sant+Miquel+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA</a>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="avanzarA('p4-enigma')">HE LLEGADO A LA PLAZA</button>
+            
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        // LÓGICA DEL GUARDIÁN
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
+
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
+
+        function checkGuardianAnswer() {
+            let respuesta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            // RESPUESTAS VÁLIDAS: LUCIO, YO, PADRE, TU
+            if (respuesta.includes("LUCIO") || respuesta.includes("YO") || respuesta.includes("PADRE") || respuesta === "TU") {
+                closeGuardianModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none';
+            } else {
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
+            }
+        }
+
+        // LÓGICA DEL MASTER
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Tesoro de Barcino</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    <script src="candado.js"></script> <!-- Importa candado.js aquí para sus funciones globales -->
+</head>
+<body>
+
+    <!-- MODAL CONTINUAR PARTIDA -->
+    <div id="continue-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; justify-content:center; align-items:center; flex-direction:column; padding: 20px;">
+        <div class="container" style="text-align:center; border-color: #fff;">
+            <h2 style="color: var(--color-acento-rojo-quemado); margin-top:0;">¡Partida Detectada!</h2>
+            <p style="margin-bottom:20px;">Parece que ya habías empezado la búsqueda.</p>
+            <button class="btn" id="btn-continuar" style="margin-bottom:15px;">CONTINUAR DONDE LO DEJÉ</button>
+            <button class="hint-btn" id="btn-reiniciar">EMPEZAR DE CERO</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE AYUDA DIRECTA -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>La Carta de África</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/trama-lucio-inicio.jpg" alt="Estatua de Lucio Minicio Natal">
+        </div>
+
+        <div class="narrativa">
+            <p><strong>"¡Salve, ciudadano! Si lees esto, la diosa Fortuna ha querido que seas mi última esperanza.</strong></p>
+            
+            <p>Mi nombre es <strong>Lucio Minicio Natal</strong>. Las piedras de <strong>Barcino</strong> cuentan mi historia: fui el primer hispano en ganar el laurel olímpico con mi cuadriga (129 d.C.) y regalé a la ciudad sus grandiosas termas.</p>
+            
+            <p>Te escribo desde <strong>África</strong>, donde sirvo a Roma como procónsul. Mi vida y mi legado corren peligro. Si esta carta te ha llegado, quizás ya es tarde para mi. Desde aquí, mis manos están atadas, pero noticias oscuras llegan a mis oídos: senadores corruptos conspiran para saquear el tesoro que oculté, dispuesto para proteger el futuro de Barcino.</p>
+            
+            <p>He encriptado la ubicación del Tesoro en esta carta. Solo alguien con astucia y honor podrá descifrarla antes de que sea demasiado tarde.</p>
+            
+            <p><strong>El destino de mi legado está ahora en tus manos."</strong></p>
+            <p><strong>¿Aceptas el desafío?</strong></p>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- Usa avanzarA del candado.js -->
+            <button class="btn" onclick="avanzarA('p1-navegacion')">ACEPTO EL RETO</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Lógica de Continuar Partida (al cargar la página)
+        document.addEventListener("DOMContentLoaded", function() {
+            let paginaGuardada = localStorage.getItem('progresoJuego');
+            if (paginaGuardada) {
+                let modal = document.getElementById('continue-modal');
+                modal.style.display = 'flex';
+                document.getElementById('btn-continuar').onclick = function() { 
+                    window.location.href = paginaGuardada; // La URL ya viene con el idioma correcto
+                };
+                document.getElementById('btn-reiniciar').onclick = function() { 
+                    localStorage.removeItem('progresoJuego'); 
+                    modal.style.display = 'none'; 
+                };
+            }
+        });
+        // empezarJuego ya no es necesaria aquí, usar avanzarA directamente en el botón
+    </script>
+</body>
+</html>

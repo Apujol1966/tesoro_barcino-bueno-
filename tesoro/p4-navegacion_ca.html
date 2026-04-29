@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 4: El Vapor de Barcino</title>
+    <!-- Estils -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuració -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input { width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a; border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box; }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL GUARDIÀ -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Demostra la teva atenció</h3>
+            <p>Segons aquest fragment de la meva carta, qui va ordenar construir les termes?</p>
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Escriu la teva resposta">
+            
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancel·lar</button>
+            
+            <div id="guardian-error" class="error-msg">Incorrecte. Torna a llegir el fragment de la carta.</div>
+        </div>
+    </div>
+
+    <!-- MODAL DEL MÀSTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Telèfon / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>Cap a les Termes</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p4-camino.jpg" alt="Carrers de Barcino">
+        </div>
+
+        <!-- TEXT DE LA CARTA (Cometes agrupades) -->
+        <div class="narrativa" style="font-style: italic;">
+            <p>"Creua ara el cor de la ciutat cap al lloc on el vapor i l'aigua reconfortaven el cos després de la fatiga. El meu pare i jo vam alçar allà les Termes de Barcino per a orgull de la colònia.</p>
+            
+            <p>Busqueu la plaça que s'amaga rere el gran palau del govern de la ciutat. Allà on la història se sumergeix sota el terra, us espero."</p>
+        </div>
+
+        <div style="width: 100%; margin-bottom: 20px; text-align: center;">
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 No sé per on anar (Ajuda)</button>
+            
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px; font-style: normal;">
+                <p><strong>Pista de Navegació:</strong></p>
+                <p>Creua la Plaça Sant Jaume i passa per darrere de l'edifici de l'Ajuntament (Casa de la Ciutat). Arribaràs a la <strong>Plaça de Sant Miquel</strong>.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+Sant+Miquel+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VEURE MAPA</a>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- GUARDEM PROGRÉS -->
+            <button class="btn" onclick="avanzarA('p4-enigma')">HE ARRIBAT A LA PLAÇA</button>
+            
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        // LÒGICA DEL GUARDIÀ
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
+
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
+
+        function checkGuardianAnswer() {
+            let resposta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            
+            // RESPOSTES VÀLIDES: LUCI, JO, PARE, TU
+            if (resposta.includes("LUCI") || resposta.includes("JO") || respuesta.includes("PARE") || respuesta === "TU") {
+                closeGuardianModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none';
+            } else {
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
+            }
+        }
+
+        // LÒGICA DEL MÀSTER
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

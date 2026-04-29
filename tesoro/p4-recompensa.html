@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 4: El Código del César</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .codigo-cesar {
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid var(--color-acento-tierra);
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Mensaje Oculto</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <!-- Foto de la plaza Sant Miquel o detalle de las termas -->
+            <img src="../recursos/p4-recompensa.jpg" alt="Plaça de Sant Miquel">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.1rem; color: var(--color-acento-rojo-quemado);"><strong>¡Exacto! Antoni Llena.</strong></p>
+
+            <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem; font-style: italic;">
+                <p style="margin-top: 0;"><strong>🏛️ Archivos de la Ciudad:</strong></p>
+                <p style="margin-bottom: 0;">En la antigua Roma, las termas eran mucho más que baños; eran el centro de la vida social. El hecho de que Lucio las donara demuestra su inmenso poder y su amor por Barcino.</p>
+            </div>
+
+            <!-- TEXTO DE LA CARTA (Comillas agrupadas) -->
+            <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
+                <p>"Habéis demostrado ser observadores, pero el peligro acecha y mi tesoro sigue oculto. Dudo que nadie os haya podido seguir la pista hasta tan lejos. Aquí tenéis la clave final que usaba incluso el gran César para enviar mensajes entre sus legiones.</p>
+                
+                <p style="font-style: normal; text-align: center; color: var(--color-acento-rojo-quemado); font-weight: bold; margin-top: 15px;">CLAVE G → A + 6ª</p>
+                <p style="font-style: normal; text-align: center; font-family: monospace; font-size: 0.85rem; color: #aaa;">A B C D E F G H I J K L M N Ñ O P Q R S T U V W X Y Z</p>
+
+                <div class="codigo-cesar">
+                    <p style="font-style: normal; font-weight: bold; font-size: 1.3rem; margin: 0;">PCU - NYKOFWMUF - MJGUHU</p>
+                </div>
+                
+                <p style="font-style: normal; margin-top: 15px;">Encontrad el destino final y poned a salvo mi legado antes de que sea tarde."</p>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Escribe el destino descifrado...">
+        </div>
+
+        <div class="navigation-controls">
+            <!-- VALIDAMOS Y VAMOS A LA ÚLTIMA PARADA (Navegación Parada 5) -->
+            <button class="btn" onclick="comprobarRespuesta()">DESCIFRAR DESTINO</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">El código es incorrecto. Sigue el orden del abecedario.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> A cada letra del código debes <strong>sumarle 6 posiciones</strong> en el abecedario (incluyendo la Ñ).<br><br>
+            - P + 6 letras = <strong>V</strong><br>
+            - C + 6 letras = <strong>I</strong><br>
+            - U + 6 letras = <strong>A</strong> (vuelta al inicio)<br><br>
+            ¡La primera palabra es <strong>VIA</strong>!
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓN: VIA SEPULCRAL ROMANA
+            if (respuestaLimpia === "VIA SEPULCRAL ROMANA" || respuestaLimpia.includes("VIA SEPULCRAL")) {
+                avanzarA('p5-navegacion');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

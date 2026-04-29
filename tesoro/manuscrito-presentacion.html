@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próxima Misión: El Manuscrito de Piedra</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    <style>
+        .promo-card {
+            background-color: rgba(0,0,0,0.6);
+            border: 2px solid #d4af37;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .time-travel-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px #d4af37);
+        }
+        .highlight-text {
+            color: #d4af37;
+            font-family: var(--fuente-titulo);
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .descripcion-viaje {
+            font-style: italic;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>El Viaje Continúa</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <!-- Una foto sugerente del Barrio Gótico de noche o la Catedral -->
+            <img src="../recursos/promo-manuscrito.jpg" alt="Barcelona Gótica">
+        </div>
+
+        <div class="promo-card">
+            <span class="time-travel-icon">⏳</span>
+            <span class="highlight-text">EL MANUSCRITO DE PIEDRA</span>
+            
+            <div class="descripcion-viaje">
+                <p>Has desenterrado los cimientos de Barcino, pero la historia de esta ciudad no se detiene bajo la arena.</p>
+                
+                <p>Te invitamos a cruzar una <strong>fractura en el tiempo</strong>. Deja atrás la gloria de las legiones y adéntrate en las sombras de la Barcelona medieval.</p>
+                
+                <p>Nueve siglos de secretos te esperan grabados en la piel de piedra del Barrio Gótico. Un viaje cronológico donde las gárgolas observan y los muros custodian verdades que han esperado mil años para ser reveladas.</p>
+            </div>
+
+            <p><strong>¿Estás listo para saltar al medievo?</strong></p>
+        </div>
+
+        <div class="navigation-controls" style="margin-top: 30px;">
+            <button class="btn" onclick="window.location.href='https://TU_WEB_OFICIAL.com/manuscrito'" style="background-color: #c0392b;">RESERVAR MI VIAJE TEMPORAL</button>
+            <button class="hint-btn" onclick="history.back()">VOLVER ATRÁS</button>
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+</body>
+</html>

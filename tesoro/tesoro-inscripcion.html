@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Legado de Piedra</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        
+        /* MARCO FLEXIBLE PARA VER LA PIEDRA ENTERA */
+        .imagen-marco {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            background-color: #000; 
+            border: 2px solid var(--color-acento-tierra);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .imagen-marco img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* CUADRO DE TRADUCCIÓN DETALLADA */
+        .translation-box {
+            background-color: rgba(0,0,0,0.4);
+            border: 1px solid var(--color-acento-tierra);
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            border-radius: 4px;
+        }
+        .translation-box h2 {
+            font-family: var(--fuente-titulo);
+            color: var(--color-acento-rojo-quemado);
+            font-size: 1.2rem;
+            margin-top: 0;
+            text-align: center;
+        }
+        .cargo-item {
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(141, 110, 99, 0.3);
+            padding-bottom: 5px;
+        }
+        .cargo-item:last-child { border-bottom: none; }
+        .cargo-titulo {
+            font-weight: bold;
+            color: #d4af37;
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .cargo-desc {
+            font-size: 0.85rem;
+            color: #ccc;
+            line-height: 1.3;
+        }
+        .link-google { color: #d4af37; text-decoration: underline; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">Teléfono / WhatsApp:<br>664 252 723</p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>La Piedra de la Gloria</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p5-inscripcion.jpg" alt="Inscripción real de Lucio Minicio Natal">
+        </div>
+
+        <div class="narrativa">
+            <p>"Observa con atención, ciudadano. Este es mi verdadero legado, el tesoro que has rescatado de las manos negras de aquellos que querían borrarlo para siempre. Esta piedra no es ficción; es mi historia real, grabada en mármol hace casi dos mil años para que el tiempo no borrara mi camino."</p>
+            
+            <div class="translation-box">
+                <h2>A LUCIO MINICIO NATAL CUADRONIO VERO JUNIOR</h2>
+                <p style="text-align: center; font-size: 0.8rem; margin-top: -10px; color: #aaa;">Hijo de Lucio, de la tribu Galeria</p>
+
+                <div class="cargo-item">
+                    <span class="cargo-titulo">Cónsul y Augur de Roma</span>
+                    <span class="cargo-desc">Uno de los máximos honores políticos y religiosos en la capital del Imperio.</span>
+                </div>
+
+                <div class="cargo-item">
+                    <span class="cargo-titulo">Procónsul de la Provincia de África</span>
+                    <span class="cargo-desc">El alto cargo desde el cual te escribí la carta que hoy has descifrado.</span>
+                </div>
+
+                <div class="cargo-item">
+                    <span class="cargo-titulo">Legado del Emperador en Mesia Inferior</span>
+                    <span class="cargo-desc">Gobernador y comandante militar en la frontera del Danubio.</span>
+                </div>
+
+                <div class="cargo-item">
+                    <span class="cargo-titulo">Curador de Obras Públicas y Templos</span>
+                    <span class="cargo-desc">Encargado de la belleza y solidez de los monumentos de la capital del mundo.</span>
+                </div>
+
+                <div class="cargo-item">
+                    <span class="cargo-titulo">Legado de la Legión VI Victrix en Britania</span>
+                    <span class="cargo-desc">Comandante de una de las legiones más temidas en las lejanas tierras del norte.</span>
+                </div>
+            </div>
+
+            <p style="font-style: italic;">"Recorrí el mundo desde Britania hasta África, pero mi mayor orgullo fue nacer y ser recordado en mi querida <strong>Barcino</strong>."</p>
+        </div>
+
+        <div class="navigation-controls" style="margin-bottom: 30px;">
+            <button class="btn" onclick="avanzarA('tesoro-biografia')" style="background-color: var(--color-acento-tierra);">📜 LEE SU BIOGRAFIA</button>
+        </div>
+
+        <!-- BLOQUE DE PROMOCIÓN PERSONALIZADO -->
+        <div style="background-color: rgba(183, 79, 59, 0.1); padding: 20px; border-radius: 8px; border: 1px dashed var(--color-acento-rojo-quemado); text-align: center; margin: 30px 0;">
+            <p style="margin-top: 0; color: #d4af37;"><strong>¡Misión cumplida, ciudadano!</strong></p>
+            <p style="font-size: 0.95rem;">Has salvado el Tesoro de Barcino. Si te ha gustado esta aventura, ayúdanos con una <a href="https://g.page/r/CWyNVR5O9gRyEBE/review" target="_blank" class="link-google">reseña en Google</a>.</p>
+            
+            <p style="font-size: 1rem; color: #fff; margin-top: 20px;">Tu próximo desafío te espera en el Barrio Gótico:</p>
+            <p style="font-size: 1.2rem; color: var(--color-acento-rojo-quemado); font-family: var(--fuente-titulo); margin: 5px 0;"><strong>EL MANUSCRITO DE PIEDRA</strong></p>
+            
+            <p style="font-size: 0.9rem; margin-top: 10px;">Utiliza este código para obtener un <strong>10% de descuento</strong>:</p>
+            <p style="font-size: 1.4rem; color: #d4af37; font-family: var(--fuente-titulo); margin: 10px 0;"><strong>BARCINO10</strong></p>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- BOTÓN FINAL -->
+            <button class="btn" onclick="finalizarJuego();">FINALIZAR AVENTURA</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+    <script>
+        function finalizarJuego() {
+            localStorage.removeItem('progresoJuego');
+            window.location.href = 'tesoro-despedida.html';
+        }
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

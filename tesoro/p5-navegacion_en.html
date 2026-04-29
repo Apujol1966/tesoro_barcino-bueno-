@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop 5: The Final Path</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuration -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input { width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a; border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box; }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- GUARDIAN MODAL -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Show your attention</h3>
+            <p>What building for rest did my family build and you just visited?</p>
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Type the place">
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDATE</button>
+            <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancel</button>
+            <div id="guardian-error" class="error-msg">Incorrect. Remember where you were a moment ago.</div>
+        </div>
+    </div>
+
+    <!-- GAME MASTER MODAL -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Phone / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>The Final Path</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p5-camino.jpg" alt="Streets of Barcelona">
+        </div>
+
+        <!-- LETTER TEXT -->
+        <div class="narrativa" style="font-style: italic;">
+            <p>"Finally, you are close to the end. I have designed this route to mislead my enemies from the curia, but you must stay alert, as they might be taking advantage of your progress to reach the Treasure before you.</p>
+            
+            <p>The place you are heading to is where the beginning and the end are protagonists. The Sepulchral Way is located on a secondary road that connected Barcino with the outside. There, outside the walls, is where travelers see us and remember us. We believe that as long as someone names us, our essence remains alive."</p>
+        </div>
+
+        <div style="width: 100%; margin-bottom: 20px; text-align: center;">
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 I don't know how to get there (Help)</button>
+            
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px; font-style: normal;">
+                <p><strong>Navigation Clue:</strong></p>
+                <p>Head to <strong>Plaça de la Vila de Madrid</strong>. It is very close to the Rambla. There you will see an open excavation with Roman tombs in sight.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Plaça+de+la+Vila+de+Madrid+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VIEW MAP</a>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="avanzarA('p5-enigma')">I HAVE REACHED THE TOMBS</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        var gModal = document.getElementById('guardian-modal');
+        var gErrorMsg = document.getElementById('guardian-error');
+        var gInput = document.getElementById('guardian-answer');
+
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
+
+        function checkGuardianAnswer() {
+            let respuesta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (respuesta.includes("BATHS") || respuesta.includes("TERMAS") || respuesta.includes("BATH")) {
+                closeGuardianModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none';
+            } else {
+                gErrorMsg.style.display = 'block';
+                gInput.style.borderColor = "#ff6b6b";
+                setTimeout(() => gInput.style.borderColor = "#555", 500);
+            }
+        }
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 5: El Tresor de Luci</title>
+    <!-- Estils -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuració -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MÀSTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Telèfon / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>L'Últim Secret</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p5-recompensa.jpg" alt="Detall de les tombes romanes">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.1rem; color: var(--color-acento-rojo-quemado);"><strong>¡Correcte! Has travessat l'entrada.</strong></p>
+
+            <!-- CURIOSITAT HISTÒRICA -->
+            <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem; font-style: italic;">
+                <p style="margin-top: 0;"><strong>🏛️ Arxius de la Ciutat:</strong></p>
+                <p style="margin-bottom: 0;">La Via Sepulcral Romana de Barcino és un jaciment únic. Les tombes se situaven fora de la ciutat, ja que la llei romana prohibia enterrar els morts dins del recinte amurallat. Les que veus avui van estar ocultes sota terra durant més de 1.500 anys.</p>
+            </div>
+
+            <!-- TEXT DE LA CARTA -->
+            <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
+                <p>"Davant teu pots veure les morades eternes d'aquells que una vegada van caminar pels carrers de la meva estimada Barcino. Les nostres tombes estan als camins perquè els viatgers puguin veure'ns i recordar-nos.</p>
+                
+                <p>La meva família ocupa una d'aquestes tombes i el nostre símbol segueix visible en un lateral. La <strong>sort</strong> sempre ens acompanya, així que espero que a tu també. Ets capaç de veure'ns?</p>
+                
+                <p style="font-style: normal;"><strong>Busca la tomba que menciona els Minicius. Quina figura de la SORT hi ha gravada al seu lateral?</strong>"</p>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Escriu el nom del símbol...">
+        </div>
+
+        <div class="navigation-controls">
+            <!-- VALIDEM I ANEM A LA PANTALLA FINAL -->
+            <button class="btn" onclick="comprobarRespuesta()">DESCOBRIR EL TRESOR</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Aquest no és el símbol que protegeix la meva família. Observa bé els baixos relleus a la pedra.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Recorre la passarel·la i busca una inscripció que comenci per "MINI...". En un lateral d'aquesta mateixa pedra veuràs tallada una planta de tres fulles que simbolitza la bona fortuna.
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓ: TREBOL
+            if (respuestaLimpia.includes("TREBOL")) {
+                avanzarA('p5-final');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

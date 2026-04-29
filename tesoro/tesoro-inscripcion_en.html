@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Legacy in Stone</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .imagen-marco { width: 100%; height: auto; max-height: 70vh; background-color: #000; border: 2px solid var(--color-acento-tierra); display: flex; justify-content: center; align-items: center; overflow: hidden; margin-bottom: 20px; }
+        .imagen-marco img { width: 100%; height: auto; max-height: 70vh; object-fit: contain; display: block; }
+        .translation-box { background-color: rgba(0,0,0,0.4); border: 1px solid var(--color-acento-tierra); padding: 20px; margin: 20px 0; text-align: left; border-radius: 4px; }
+        .translation-box h2 { font-family: var(--fuente-titulo); color: var(--color-acento-rojo-quemado); font-size: 1.2rem; margin-top: 0; text-align: center; }
+        .cargo-item { margin-bottom: 15px; border-bottom: 1px solid rgba(141, 110, 99, 0.3); padding-bottom: 5px; }
+        .cargo-item:last-child { border-bottom: none; }
+        .cargo-titulo { font-weight: bold; color: #d4af37; display: block; text-transform: uppercase; font-size: 0.9rem; }
+        .cargo-desc { font-size: 0.85rem; color: #ccc; line-height: 1.3; }
+        .link-google { color: #d4af37; text-decoration: underline; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Master</h3>
+            <p>If you have any technical issues or questions, contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">WhatsApp: 664 252 723</p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+    <header class="header"><h1>The Stone of Glory</h1></header>
+    <div class="container">
+        <div class="imagen-marco"><img src="../recursos/p5-inscripcion.jpg" alt="Real Inscription"></div>
+        <div class="narrativa">
+            <p>"Observe closely, citizen. This is my true legacy, the treasure you have rescued from the black hands of those who wanted to erase it forever. This stone is not fiction; it is my real history, carved in marble nearly two thousand years ago."</p>
+            <div class="translation-box">
+                <h2>TO LUCIUS MINICIUS NATALIS</h2>
+                <p style="text-align: center; font-size: 0.8rem; margin-top: -10px; color: #aaa;">Quadronius Verus Junior</p>
+                <div class="cargo-item"><span class="cargo-titulo">Consul and Augur of Rome</span><span class="cargo-desc">One of the highest political and religious honors in the capital of the Empire.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Proconsul of the Province of Africa</span><span class="cargo-desc">The high office from which he wrote the letter you deciphered today.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Emperor's Legate in Lower Moesia</span><span class="cargo-desc">Governor and military commander on the Danube frontier.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Curator of Public Works and Temples</span><span class="cargo-desc">In charge of the beauty and solidity of the monuments of the capital of the world.</span></div>
+                <div class="cargo-item"><span class="cargo-titulo">Legate of the Legio VI Victrix in Britannia</span><span class="cargo-desc">Commander of one of the most feared legions in the distant northern lands.</span></div>
+            </div>
+            <p style="font-style: italic;">"I traveled the world from Britain to Africa, but my greatest pride was being born and remembered in my beloved <strong>Barcino</strong>."</p>
+        </div>
+        <div class="navigation-controls" style="margin-bottom: 30px;">
+            <button class="btn" onclick="avanzarA('tesoro-biografia')" style="background-color: var(--color-acento-tierra);">📜 READ HIS BIOGRAPHY</button>
+        </div>
+        <div style="background-color: rgba(183, 79, 59, 0.1); padding: 20px; border-radius: 8px; border: 1px dashed var(--color-acento-rojo-quemado); text-align: center; margin: 30px 0;">
+            <p style="margin-top: 0; color: #d4af37;"><strong>Mission accomplished, citizen!</strong></p>
+            <p style="font-size: 0.95rem;">You have saved the Treasure of Barcino. If you enjoyed the adventure, help us with a <a href="https://g.page/r/CWyNVR5O9gRyEBE/review" target="_blank" class="link-google">Google review</a>.</p>
+            <p style="font-size: 1rem; color: #fff; margin-top: 20px;">Your next challenge awaits in the Gothic Quarter:</p>
+            <p style="font-size: 1.2rem; color: var(--color-acento-rojo-quemado); font-family: var(--fuente-titulo); margin: 5px 0;"><strong>THE STONE MANUSCRIPT</strong></p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">Use this code to get a <strong>10% discount</strong>:</p>
+            <p style="font-size: 1.4rem; color: #d4af37; font-family: var(--fuente-titulo); margin: 10px 0;"><strong>BARCINO10</strong></p>
+        </div>
+        <div class="navigation-controls">
+            <button class="btn" onclick="localStorage.removeItem('progresoJuego'); window.location.href='tesoro-despedida.html';">FINISH ADVENTURE</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Master</button>
+        </div>
+    </div>
+    <script src="candado.js"></script>
+</body>
+</html>

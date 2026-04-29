@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Cor del Temple</title>
+    <!-- Estils -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuració -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MÀSTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Telèfon / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Cor del Temple</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-recompensa.jpg" alt="Columnes del Temple d'August">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>Exacte! 16,9 metres.</strong></p>
+            
+            <p>Segueix endavant, creua el vestíbul i contempla per fi el que he protegit: els últims vestigis del Temple d'August.</p>
+
+            <!-- ENLLAÇ PER SI ESTÀ TANCAT -->
+            <div style="text-align:center; margin: 15px 0;">
+                <p style="font-size: 0.9rem;"><em>(Si està tancat, no et preocupis)</em></p>
+                <a href="pista-cerrado_ca.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem; text-decoration: none;">
+                    Veure l'interior
+                </a>
+            </div>
+
+            <!-- FRAGMENT DE LA CARTA AMB L'ENIGMA -->
+            <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
+                <p>"Si llegeixes aquestes paraules allà on deus, és que el meu missatge has sabut escoltar.</p>
+                <p>Ara, per seguir el camí, hauràs a una viatgera imitar.</p>
+                <p>Per conèixer a la viatgera, una pista t'entrego. Resol-la i segueix el seu sender.</p>
+                <p style="font-style: normal;"><strong>On vaig estar quan el meu cos va estar sencer?</strong>"</p>
+            </div>
+        </div>
+
+        <!-- CAMP DE RESPOSTA -->
+        <div class="input-group">
+            <input type="text" id="respuesta-acertijo" placeholder="On va estar la viatgera?">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarAcertijo()">COMPROVAR ENIGMA</button>
+            
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Aquest no és el lloc. Pensa en el viatge que va fer la columna.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Una de les columnes que veus va caure i va ser traslladada a una famosa plaça medieval molt propera, on hi ha el Palau Reial i el Museu d'Història.
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarAcertijo() {
+            let input = document.getElementById('respuesta-acertijo').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓ: PLAÇA DEL REI
+            if (respuestaLimpia.includes("PLACA DEL REI") || respuestaLimpia.includes("PLAZA DEL REY") || respuestaLimpia.includes("PLACA REI")) {
+                // Correcte: Avancem a la següent parada
+                avanzarA('p3-navegacion');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta-acertijo');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

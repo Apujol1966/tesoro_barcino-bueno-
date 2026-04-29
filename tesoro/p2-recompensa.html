@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Corazón del Templo</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Corazón del Templo</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-recompensa.jpg" alt="Columnas del Templo de Augusto">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>¡Exacto! 16,9 metros.</strong></p>
+            
+            <p>Sigue adelante, cruza el vestíbulo y contempla por fin lo que he protegido: los últimos vestigios del Templo de Augusto.</p>
+
+            <!-- ENLACE POR SI ESTÁ CERRADO -->
+            <div style="text-align:center; margin: 15px 0;">
+                <p style="font-size: 0.9rem;"><em>(Si está cerrado, no te preocupes)</em></p>
+                <a href="pista-cerrado.html" class="hint-btn" style="border-width: 1px; padding: 8px 15px; font-size: 0.9rem; text-decoration: none;">
+                    Ver el interior
+                </a>
+            </div>
+
+            <!-- FRAGMENTO DE LA CARTA CON EL ACERTIJO -->
+            <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
+                <p>"Si lees estas palabras allí donde debes, es que mi mensaje has sabido escuchar.</p>
+                <p>Ahora, para seguir el camino, deberás a una viajera imitar.</p>
+                <p>Para conocer a la viajera, una pista te entrego. Resuélvela y sigue su sendero.</p>
+                <p style="font-style: normal;"><strong>¿Dónde estuve cuando mi cuerpo estuvo entero?</strong>"</p>
+            </div>
+        </div>
+
+        <!-- CAMPO DE RESPUESTA AÑADIDO -->
+        <div class="input-group">
+            <input type="text" id="respuesta-acertijo" placeholder="¿Dónde estuvo la viajera?">
+        </div>
+
+        <div class="navigation-controls">
+            <!-- El botón ahora llama a una función de comprobación -->
+            <button class="btn" onclick="comprobarAcertijo()">COMPROVAR ACERTIJO</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">Ese no es el lugar. Piensa en el viaje que hizo la columna.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Una de las columnas que ves se cayó y fue trasladada a una famosa plaza medieval muy cercana, donde están el Palacio Real y el Museo de Historia.
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+
+        function comprobarAcertijo() {
+            let input = document.getElementById('respuesta-acertijo').value;
+            let feedback = document.getElementById('mensaje-error');
+            
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // SOLUCIÓN: PLAZA DEL REY (y variantes)
+            if (respuestaLimpia.includes("PLAZA DEL REY") || respuestaLimpia.includes("PLACA DEL REI") || respuestaLimpia.includes("PLAZA REY")) {
+                // Correcto: Avanzamos a la siguiente parada
+                avanzarA('p3-navegacion');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta-acertijo');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (intentos >= 3) {
+                    document.getElementById('btn-pista').style.display = 'inline-block';
+                }
+            }
+        }
+
+        function mostrarPista() {
+            document.getElementById('texto-pista').style.display = 'block';
+            document.getElementById('btn-pista').style.display = 'none';
+        }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

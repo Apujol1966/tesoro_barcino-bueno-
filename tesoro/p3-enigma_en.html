@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop 3: Observation</title>
+    <!-- Estilos -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .conteo-list { list-style-type: none; padding-left: 0; margin: 20px 0; }
+        .conteo-list li { margin-bottom: 10px; padding-left: 20px; position: relative; font-size: 0.95rem; line-height: 1.4; }
+        .conteo-list li::before { content: '•'; position: absolute; left: 0; color: var(--color-acento-rojo-quemado); font-weight: bold; }
+        .opciones-box { background: rgba(0,0,0,0.4); border: 1px dashed var(--color-acento-tierra); padding: 15px; margin: 20px 0; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <!-- MASTER MODAL -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Phone / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>The Mirror of the City</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p3-plaza.jpg" alt="Plaça del Rei">
+        </div>
+
+        <div class="narrativa">
+            <!-- 1. Confirmation -->
+            <p style="font-size: 1.1rem; color: var(--color-acento-rojo-quemado);"><strong>Exactly! It is the Archive of the Crown of Aragon.</strong></p>
+
+            <!-- 2. Curiosity -->
+            <div style="background-color: rgba(255, 255, 255, 0.05); padding: 12px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 15px 0; font-size: 0.9rem; font-style: italic;">
+                <p style="margin-top: 0;"><strong>🏛️ City Archives:</strong></p>
+                <p style="margin-bottom: 0;">"Look closely at the foundations of this place... They have raised these walls using the imposing stones of our ancient defensive wall. Centuries will pass, but the unbreakable foundations of my beloved Barcino will always support the weight of history."</p>
+            </div>
+
+            <p>Your feet are in the right place.</p>
+
+            <!-- LETTER RELATIVE -->
+            <div style="border-top: 1px solid var(--color-acento-tierra); padding-top: 15px; font-style: italic;">
+                <p>"Well, I hope your cunning has brought you here before the black hands of Barcino. This trial will be difficult; seek help in the reflection of history.</p>
+                
+                <p>Straight ahead, imposing iron you will find, and only if you look through its eye will it be you who you see. You must look from where something as ancient as me still remains. Now that you know where to look, the next clue you will find.</p>
+                
+                <p>If you have reached the exact spot, the reflection of the city will speak to you. To open my (imaginary) chest, you will need to <strong>count from that spot that acts as a mirror of the square:</strong></p>
+                
+                <ul class="conteo-list">
+                    <li>How many bells can you see?</li>
+                    <li>How many gargoyles can you count on the building where the Aragon documents are kept?</li>
+                    <li>How many angels are needed to hold the shield in a corner?</li>
+                    <li>How many statues crown the cathedral?</li>
+                    <li>How many fountains give water to the square?</li>
+                </ul>
+
+                <p>If you are able to see it all, you will be able to read my message. Now that you have the code, I will give you three options so that you can check if you have looked correctly through the mirror of the city:</p>
+                
+                <div class="opciones-box">
+                    <p style="font-style: normal; font-weight: bold; text-align: center; color: var(--color-acento-rojo-quemado); margin: 5px 0;">
+                        I) CODE I - XI - I - II - I<br>
+                        II) CODE II - XI - II - I - I<br>
+                        III) CODE II - X - II - I - I
+                    </p>
+                </div>
+                
+                <p style="font-style: normal;">Which of the three codes have you deciphered?"</p>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="respuesta" placeholder="Type the option (I, II or III)...">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="comprobarRespuesta()">CHOOSE OPTION</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
+        </div>
+
+        <div id="mensaje-error" class="feedback error" style="display: none;">That code will not open the chest. Go back to the glass window and count again.</div>
+
+        <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 HINT</button>
+        
+        <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Positioning hint:</strong> Look for the iron sculpture (Chillida). Look through its gaps towards the glass fence on the ground. Stand on that glass: from there you will see the 2 bells, the 11 gargoyles on the archive, and the other elements.
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        let intentos = 0;
+        function comprobarRespuesta() {
+            let input = document.getElementById('respuesta').value;
+            let feedback = document.getElementById('mensaje-error');
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (respuestaLimpia === "II" || respuestaLimpia === "2" || respuestaLimpia.includes("II")) {
+                avanzarA('p3-recompensa');
+            } else {
+                intentos++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('respuesta');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+                if (intentos >= 3) { document.getElementById('btn-pista').style.display = 'inline-block'; }
+            }
+        }
+        function mostrarPista() { document.getElementById('texto-pista').style.display = 'block'; document.getElementById('btn-pista').style.display = 'none'; }
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

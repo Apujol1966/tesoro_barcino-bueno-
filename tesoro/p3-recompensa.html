@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parada 3: El Cofre</title>
+    <!-- Estilos generales -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuración y Candado -->
+    <script src="../config.js"></script>
+    <script src="candado.js"></script>
+
+    <style>
+        /* --- ESTILOS DE LOS MODALES --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+
+        /* --- SOLUCIÓN PARA QUE LA IMAGEN NO SE CORTE --- */
+        .imagen-marco {
+            width: 100%;
+            max-height: none; /* Permitimos que el marco se adapte a la imagen */
+            height: auto;
+            background-color: #ffffff; /* Fondo blanco para que coincida con tu imagen de clave */
+            border: 3px solid var(--color-acento-tierra);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imagen-marco img {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain; /* ¡ESTO EVITA QUE SE CORTE LA IMAGEN! */
+            display: block;
+        }
+
+        /* --- SISTEMA DE SÍMBOLOS DIBUJADOS CON CSS --- */
+        .message-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0; flex-wrap: wrap; }
+        
+        .symbol { 
+            width: 32px; height: 32px; 
+            border-color: var(--color-texto-claro); border-style: solid; border-width: 0; 
+            position: relative; 
+        }
+        
+        .symbol.dot::after { 
+            content: '•'; position: absolute; top: 50%; left: 50%; 
+            transform: translate(-50%, -50%); color: var(--color-texto-claro); 
+            font-size: 24px; line-height: 0; 
+        }
+
+        /* Lógica visual según tu clave */
+        /* P = Abajo-Izquierda en cuadrícula con punto (Arriba + Derecha) */
+        .sym-p { border-top-width: 3px; border-right-width: 3px; }
+        /* L = Arriba-Derecha en cuadrícula con punto (Abajo + Izquierda) */
+        .sym-l { border-bottom-width: 3px; border-left-width: 3px; }
+        /* A = Arriba-Izquierda en cuadrícula sin punto (Abajo + Derecha) */
+        .sym-a { border-bottom-width: 3px; border-right-width: 3px; }
+        /* Z = Parte INFERIOR de la X con punto (/\ con punto) */
+        .sym-z { border-top-width: 3px; border-left-width: 3px; transform: rotate(45deg); margin-top: 10px; }
+        /* S = Parte SUPERIOR de la X sin punto (\/ sin punto) */
+        .sym-s { border-bottom-width: 3px; border-right-width: 3px; transform: rotate(45deg); margin-bottom: 10px; }
+        /* N = Centro de la cuadrícula con punto (Caja completa) */
+        .sym-n { border-width: 3px; }
+        /* T = Parte IZQUIERDA de la X sin punto (> sin punto) */
+        .sym-t { border-top-width: 3px; border-right-width: 3px; transform: rotate(45deg); }
+        /* M = Medio-Izquierda en cuadrícula con punto (Arriba + Derecha + Abajo) */
+        .sym-m { border-top-width: 3px; border-right-width: 3px; border-bottom-width: 3px; }
+        /* I = Abajo-Derecha en cuadrícula sin punto (Arriba + Izquierda) */
+        .sym-i { border-top-width: 3px; border-left-width: 3px; }
+        /* Q = Abajo-Centro en cuadrícula con punto (Arriba + Izquierda + Derecha) */
+        .sym-q { border-top-width: 3px; border-left-width: 3px; border-right-width: 3px; }
+        /* U = Parte INFERIOR de la X sin punto (/\ sin punto) */
+        .sym-u { border-top-width: 3px; border-left-width: 3px; transform: rotate(45deg); margin-top: 10px; }
+        /* E = Centro de la cuadrícula sin punto (Caja completa) */
+        .sym-e { border-width: 3px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- MODAL DEL MASTER -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta con el Master</h3>
+            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Teléfono / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>El Cofre de la Muralla</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <!-- FOTO: p3-pigpen-clave.jpg (La imagen de la clave que no se ajustaba) -->
+            <img src="../recursos/p3-pigpen-clave.jpg" alt="Clave de decodificación">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>¡Exacto! Has elegido la Opción II.</strong></p>
+            <p>El cofre se abre. Usa la clave de la imagen superior para descifrar el mensaje que ha revelado:</p>
+            
+            <!-- PALABRA: PLAZA -->
+            <div class="message-row">
+                <div class="symbol sym-p dot"></div>
+                <div class="symbol sym-l dot"></div>
+                <div class="symbol sym-a"></div>
+                <div class="symbol sym-z dot"></div>
+                <div class="symbol sym-a"></div>
+            </div>
+
+            <!-- PALABRA: SANT -->
+            <div class="message-row">
+                <div class="symbol sym-s"></div>
+                <div class="symbol sym-a"></div>
+                <div class="symbol sym-n dot"></div>
+                <div class="symbol sym-t"></div>
+            </div>
+
+            <!-- PALABRA: MIQUEL -->
+            <div class="message-row">
+                <div class="symbol sym-m dot"></div>
+                <div class="symbol sym-i"></div>
+                <div class="symbol sym-q dot"></div>
+                <div class="symbol sym-u"></div>
+                <div class="symbol sym-e"></div>
+                <div class="symbol sym-l dot"></div>
+            </div>
+            
+            <p><strong>¿Cuál es el destino que has descubierto?</strong></p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="answer" placeholder="Escribe el destino...">
+        </div>
+
+        <div class="navigation-controls">
+            <button class="btn" onclick="checkAnswer()">IR AL DESTINO</button>
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
+        </div>
+
+        <div id="feedback-msg" class="feedback error" style="display: none;">Destino incorrecto. Revisa bien la clave.</div>
+
+        <button id="hint-toggle-btn" class="hint-btn" onclick="toggleHint()" style="display: none;">💡 PISTA</button>
+        
+        <div id="hint-box" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
+            <strong>Pista:</strong> Mira las líneas que rodean cada letra en la imagen superior. <br><br>
+            - La <strong>M</strong> es el símbolo en forma de <strong>[</strong> con punto.<br>
+            - La <strong>Z</strong> y la <strong>U</strong> tienen forma de cuña hacia arriba: <strong>/\</strong>.
+        </div>
+        
+    </div>
+
+    <script>
+        let failCount = 0;
+
+        function checkAnswer() {
+            let input = document.getElementById('answer').value;
+            let feedback = document.getElementById('feedback-msg');
+            let hintButton = document.getElementById('hint-toggle-btn');
+            
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            if (respuestaLimpia === "PLAZA SANT MIQUEL" || respuestaLimpia === "PLACA SANT MIQUEL" || respuestaLimpia === "SANT MIQUEL" || respuestaLimpia === "PLAZA SAN MIGUEL") {
+                avanzarA('p4-navegacion');
+            } else {
+                failCount++;
+                feedback.style.display = 'block';
+                let inputField = document.getElementById('answer');
+                inputField.style.borderColor = '#ff6b6b';
+                setTimeout(() => { inputField.style.borderColor = ''; }, 500);
+
+                if (failCount >= 3) {
+                    hintButton.style.display = 'inline-block';
+                }
+            }
+        }
+
+        function toggleHint() {
+            const box = document.getElementById('hint-box');
+            box.style.display = (box.style.display === 'none') ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

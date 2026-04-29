@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Accomplished!</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuration -->
+    <script src="../config.js"></script>
+    <style>
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        
+        .hallazgo-brillo {
+            animation: pulse-gold 2s infinite alternate;
+            border: 4px solid #d4af37 !important; /* Gold */
+        }
+        @keyframes pulse-gold {
+            from { box-shadow: 0 0 10px #d4af37; }
+            to { box-shadow: 0 0 30px #d4af37, 0 0 40px #b74f3b; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GAME MASTER MODAL -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Phone / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>THE TREASURE IS YOURS!</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco hallazgo-brillo">
+            <img src="../recursos/p5-hallazgo.jpg" alt="The Treasure of Barcino">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.3rem; text-align: center; color: #d4af37;"><strong>YOU DID IT!</strong></p>
+            
+            <div style="font-style: italic; margin-top: 20px;">
+                <p>"The treasure is safe from the black hands of the corrupt senators. It is not gold or jewels that you have found, but the recovered memory of a champion of Barcino who never stopped loving his city.</p>
+                
+                <p>You have shown the courage of a charioteer and the cunning of a consul. Now, my legacy will live forever thanks to your ingenuity. My story will no longer be lost in the sands of time."</p>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px;"><strong>Do you want to see real proof of my existence?</strong></p>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- BUTTON TO THE REAL INSCRIPTION -->
+            <button class="btn" onclick="avanzarA('tesoro-inscripcion')" style="background-color: #d4af37; color: #000;">📜 SEE THE LEGACY IN STONE</button>
+            
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
+        </div>
+
+    </div>
+
+    <!-- Candado -->
+    <script src="candado.js"></script>
+
+    <script>
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
+    </script>
+</body>
+</html>

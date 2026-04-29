@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop 2: The Hidden Temple</title>
+    <link rel="stylesheet" href="tesoro-estilos.css">
+    <script src="../config.js"></script>
+    
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); display: none; 
+            align-items: center; justify-content: center;
+            z-index: 1000; padding: 20px; box-sizing: border-box;
+        }
+        .modal-content {
+            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
+            padding: 25px; border-radius: 4px; text-align: center;
+            width: 100%; max-width: 400px;
+        }
+        .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
+        .modal-input {
+            width: 100%; padding: 10px; margin: 15px 0; background: #1a1a1a;
+            border: 1px solid #555; color: #fff; text-align: center; font-size: 1.1rem; box-sizing: border-box;
+        }
+        .error-msg { color: #ff6b6b; font-size: 0.9rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+    <!-- GUARDIAN MODAL -->
+    <div id="guardian-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Show your attention</h3>
+            <p>Before revealing the path, answer:</p>
+            <p><em>"What main building was located in the forum of the colony?"</em></p>
+            
+            <input type="text" id="guardian-answer" class="modal-input" placeholder="Type your answer">
+            
+            <button class="btn" onclick="checkGuardianAnswer()">VALIDATE</button>
+            <button class="hint-btn" onclick="closeModal()" style="margin-top: 10px; border: none;">Cancel</button>
+            
+            <div id="guardian-error" class="error-msg">Incorrect answer. Read the main text again.</div>
+        </div>
+    </div>
+
+    <!-- GAME MASTER MODAL -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contact the Game Master</h3>
+            <p>If you have any technical issues or a doubt the clues can't solve, you can contact me directly.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Phone / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Close</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <h1>Towards the Temple</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="imagen-marco">
+            <img src="../recursos/p2-templo.jpg" alt="Gothic quarter alley">
+        </div>
+
+        <div class="narrativa">
+            <p style="font-size: 1.2rem;"><strong>EXACTLY! THE TEMPLE OF AUGUSTUS.</strong></p>
+            
+            <div style="background-color: rgba(255, 255, 255, 0.08); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem;">
+                <p style="margin-top: 0;"><strong>🏛️ City Archives:</strong></p>
+                <p>The Temple of Augustus in Barcino was built in the 1st century for the imperial cult of Caesar Augustus, who gave permission to found the colony of Barcino.</p>
+                <p style="margin-bottom: 0;">The temple was erected over the Forum, in the current Gothic Quarter, at the highest point of Mount Táber.</p>
+            </div>
+            
+            <p>Find it to follow the path that Lucio has left us!</p>
+        </div>
+
+        <div style="width: 100%; margin-bottom: 20px; text-align: center;">
+            <button class="hint-btn" onclick="openModal()" id="btn-pista-trigger">📍 I'm lost (Ask for Help)</button>
+            
+            <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px;">
+                <p><strong>Navigation Clue:</strong></p>
+                <p>Look for <strong>Carrer Paradís</strong>, at the highest point of the Gothic Quarter, next to Plaça Sant Jaume. Inside a small courtyard, you will find the heart of the ancient city.</p>
+                <br>
+                <a href="https://www.google.com/maps/search/?api=1&query=Temple+d%27August+barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VIEW MAP</a>
+            </div>
+        </div>
+
+        <div class="navigation-controls">
+            <!-- USO DE avanzarA() -->
+            <button class="btn" onclick="avanzarA('p2-enigma')">I HAVE REACHED THE TEMPLE</button>
+            
+            <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contact the Game Master</button>
+        </div>
+
+    </div>
+
+    <script src="candado.js"></script>
+
+    <script>
+        var modal = document.getElementById('guardian-modal');
+        var errorMsg = document.getElementById('guardian-error');
+        var input = document.getElementById('guardian-answer');
+
+        function openModal() {
+            modal.style.display = 'flex';
+            input.value = "";
+            errorMsg.style.display = 'none';
+            input.focus();
+        }
+        function closeModal() { modal.style.display = 'none'; }
+
+        function checkGuardianAnswer() {
+            let respuesta = input.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            if (respuesta.includes("TEMPLE") || respuesta.includes("TEMPLO")) {
+                closeModal();
+                document.getElementById('pista-texto').style.display = 'block';
+                document.getElementById('btn-pista-trigger').style.display = 'none';
+            } else {
+                errorMsg.style.display = 'block';
+                input.style.borderColor = "#ff6b6b";
+                setTimeout(() => input.style.borderColor = "#555", 500);
+            }
+        }
+    </script>
+</body>
+</html>
