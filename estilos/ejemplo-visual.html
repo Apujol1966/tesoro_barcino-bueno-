@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Prueba de Foto - Templo Augusto</title>
+    <style>
+        /* --- ESTILOS "APP NATIVA" --- */
+        :root {
+            --color-fondo: #1a1a1a;
+            --color-texto: #e0e0e0;
+            --color-primario: #d4af37; /* Dorado */
+            --color-error: #ff6b6b;
+            --fuente-cuerpo: sans-serif;
+        }
+
+        body {
+            background-color: var(--color-fondo);
+            color: var(--color-texto);
+            font-family: var(--fuente-cuerpo);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* CABECERA */
+        .header {
+            background-color: rgba(0,0,0,0.9);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid var(--color-primario);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: var(--color-primario);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CONTENEDOR PRINCIPAL */
+        .container {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* --- ZONA DE IMAGEN DESTACADA --- */
+        .imagen-marco {
+            width: 100%;
+            /* Altura fija o automática según prefieras. 
+               Max-height evita que ocupe toda la pantalla en móviles largos */
+            max-height: 350px; 
+            border-radius: 12px;
+            border: 2px solid var(--color-primario);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            margin-bottom: 20px;
+            overflow: hidden; /* Para recortar si la imagen es muy grande */
+            background-color: #000;
+        }
+
+        .imagen-marco img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* CLAVE: Recorta la imagen para llenar el marco sin deformarla */
+            display: block;
+        }
+
+        /* NARRATIVA */
+        .narrativa {
+            background-color: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            border-left: 4px solid var(--color-primario);
+            font-size: 0.95rem;
+        }
+
+        /* INPUT */
+        .input-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid #555;
+            border-radius: 8px;
+            background-color: #333;
+            color: white;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--color-primario);
+        }
+
+        /* BOTÓN */
+        .btn {
+            background-color: var(--color-primario);
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            box-shadow: 0 4px 0 #8c7324;
+            transition: all 0.1s;
+        }
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Prueba Visual: Templo</h1>
+    </header>
+
+    <div class="container">
+        
+        <!-- ZONA DE FOTO: Aquí cargamos tu imagen -->
+        <div class="imagen-marco">
+            <!-- NOTA: ../ significa "sube una carpeta" para buscar "recursos" -->
+            <img src="../recursos/templo_augusto.jpg" alt="Columnas del Templo de Augusto">
+        </div>
+
+        <div class="narrativa">
+            <p><strong>Lucio dice:</strong></p>
+            <p>"Si estás en el lugar adecuado, seréis testigos de la historia. Estas columnas han visto pasar emperadores y siglos..."</p>
+            <p><em>¿Dónde estuve cuando mi cuerpo estuvo entero?</em></p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" placeholder="Escribe tu respuesta...">
+        </div>
+
+        <button class="btn">Comprobar</button>
+
+    </div>
+
+</body>
+</html>

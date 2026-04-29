@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Estilo Papiro - Templo Augusto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILO PAPIRO ANTIGUO --- */
+        :root {
+            --color-fondo-papiro: #f4e8c1; /* Tono papiro claro */
+            --color-texto-tinta: #4e342e; /* Marrón oscuro (tinta) */
+            --color-acento-rojo: #a02020; /* Rojo lacre */
+            --color-acento-verde: #4a5d3f; /* Verde oliva oscuro */
+            --fuente-titulo: 'Merriweather', serif;
+            --fuente-cuerpo: 'Merriweather', serif;
+            --sombra-sutil: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        body {
+            background-color: var(--color-fondo-papiro);
+            background-image: url('https://www.transparenttextures.com/patterns/handmade-paper.png'); /* Textura de papel antiguo */
+            background-size: repeat;
+            background-attachment: fixed;
+            color: var(--color-texto-tinta);
+            font-family: var(--fuente-cuerpo);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: rgba(240,225,180,0.9); /* Un papiro más denso */
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid var(--color-acento-rojo);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--sombra-sutil);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--color-texto-tinta);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-family: var(--fuente-titulo);
+        }
+
+        .container {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: rgba(255,255,255,0.6); /* Transparencia para ver fondo */
+            border-radius: 8px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--sombra-sutil);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .imagen-marco {
+            width: 100%;
+            max-height: 350px;
+            border-radius: 8px;
+            border: 3px solid var(--color-acento-verde); /* Borde más orgánico */
+            box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .imagen-marco img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .narrativa {
+            background-color: rgba(255,255,255,0.8);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            border-left: 5px solid var(--color-acento-rojo);
+            font-size: 1rem;
+            font-style: italic;
+            box-shadow: var(--sombra-sutil);
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid var(--color-acento-verde);
+            border-radius: 6px;
+            background-color: #fffaf0; /* Color crema suave */
+            color: var(--color-texto-tinta);
+            box-sizing: border-box;
+            text-align: center;
+            transition: border-color 0.3s;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--color-acento-rojo);
+        }
+
+        .btn {
+            background-color: var(--color-acento-rojo);
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.05rem;
+            font-weight: bold;
+            border-radius: 4px; /* Menos redondeado, más de sello */
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            box-shadow: 0 3px 0 #7e1919;
+            transition: transform 0.1s;
+        }
+        .btn:active {
+            transform: translateY(3px);
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <h1>Prototipo: Estilo PAPIRO ANTIGUO</h1>
+    </header>
+
+    <div class="container">
+        <div class="imagen-marco">
+            <img src="../recursos/templo_augusto.jpg" alt="Columnas del Templo de Augusto">
+        </div>
+
+        <div class="narrativa">
+            <p><strong>Lucio dice:</strong></p>
+            <p>"Si estás en el lugar adecuado, seréis testigos de la historia. Estas columnas han visto pasar emperadores y siglos..."</p>
+            <p><em>¿Dónde estuve cuando mi cuerpo estuvo entero?</em></p>
+        </div>
+
+        <div class="input-group">
+            <input type="text" placeholder="Escribe tu respuesta...">
+        </div>
+
+        <button class="btn">Comprobar</button>
+
+    </div>
+
+</body>
+</html>
