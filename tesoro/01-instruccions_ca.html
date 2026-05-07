@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="ca" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
     <title>Instruccions - El Tresor de Barcino</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
-    
+    <script src="../config.js"></script>
+    <script src="candado.js"></script>
     <style>
         .instructions-list { list-style: none; padding: 0; margin: 0; text-align: left; }
         .instructions-list li { position: relative; padding-left: 30px; margin-bottom: 25px; line-height: 1.5; }
@@ -21,34 +23,18 @@
     </header>
 
     <div class="container">
-        
         <div class="narrativa">
             <ul class="instructions-list">
-                <li>
-                    <strong>LA TEVA MISSIÓ</strong>
-                    Resol els enigmes històrics i segueix les pistes de Luci per descobrir el Tresor de Barcino.
-                </li>
-                <li>
-                    <strong>AJUDA EN ENIGMES</strong>
-                    Si t'encalles en una prova, no et preocupis! Després de 3 intents fallits apareixerà un botó per ajudar-te.
-                </li>
-                <li>
-                    <strong>AJUDA PER NAVEGAR</strong>
-                    Per anar d'una parada a una altra et donarem una pista. Si no n'hi ha prou, superant petits tests d'atenció, podràs desbloquejar una Pista Directa i un Mapa.
-                </li>
-                <li>
-                    <strong>JUGA AL TEU RITME... O COMPETIU!</strong>
-                    Gaudeix del passeig sense presses... o repta els teus amics per veure qui desxifra abans el misteri!
-                </li>
-                <li>
-                    <strong>AJUDA DIRECTA</strong>
-                    Si en qualsevol moment tens un problema tècnic o un dubte sobre el joc, contacta amb nosaltres prement el botó "Necessito Ajuda" al final d'aquesta pàgina.
-                </li>
+                <li><strong>LA TEVA MISSIÓ</strong> Resol els enigmes històrics i segueix les pistes de Luci per descobrir el Tresor de Barcino.</li>
+                <li><strong>AJUDA EN ENIGMES</strong> Si t'encalles en una prova, no et preocupis! Després de 3 intents fallits apareixerà un botó per ajudar-te.</li>
+                <li><strong>AJUDA PER NAVEGAR</strong> Per anar d'una parada a una altra et donarem una pista. Si no n'hi ha prou, superant petits tests d'atenció, podràs desbloquejar una Pista Directa i un Mapa.</li>
+                <li><strong>JUGA AL TEU RITME... O COMPETEIX!</strong> Gaudeix del passeig sense presses... o repta els teus amics per veure qui desxifra abans el misteri!</li>
+                <li><strong>AJUDA DIRECTA</strong> Si en qualsevol moment tens un problema tècnic o un dubte sobre el joc, contacta amb nosaltres prement el botó "Necessito Ajuda" al final d'aquesta pàgina.</li>
             </ul>
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="window.location.href='00-portada_ca.html'">ENTÈS, A JUGAR!</button>
+            <button class="btn" onclick="navegarA('00-portada')">ENTÈS, A JUGAR!</button>
             <button class="hint-btn" onclick="openMasterModal()">🆘 Necessito Ajuda</button>
         </div>
     </div>
@@ -57,18 +43,9 @@
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contacta amb el Màster</h3>
             <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
-            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Telèfon / WhatsApp:<br>
-                664 252 723
-            </p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);"> Telèfon / WhatsApp: 664 252 723 </p>
             <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
         </div>
     </div>
-
-    <script src="candado.js"></script>
-    <script>
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
-    </script>
 </body>
 </html>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>El Primer Paso</title>
-    <!-- Estilos Generales -->
     <link rel="stylesheet" href="tesoro-estilos.css">
-    <!-- Configuración -->
     <script src="../config.js"></script>
+    <script src="candado.js"></script>
+    <script>verificarAcceso();</script>
 
-    <!-- ESTILOS ESPECÍFICOS PARA LOS MODALES -->
     <style>
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -34,64 +34,49 @@
 </head>
 <body>
 
-    <!-- 1. MODAL DEL GUARDIÁN -->
     <div id="guardian-modal" class="modal-overlay">
         <div class="modal-content">
             <h3>Demuestra tu atención</h3>
             <p>Antes de revelarte el camino, responde:</p>
             <p><em>"Según el texto de Lucio, ¿por qué sendero debes continuar después de la fuente?"</em></p>
-            
             <input type="text" id="guardian-answer" class="modal-input" placeholder="Escribe tu respuesta">
-            
             <button class="btn" onclick="checkGuardianAnswer()">VALIDAR</button>
             <button class="hint-btn" onclick="closeGuardianModal()" style="margin-top: 10px; border: none;">Cancelar</button>
-            
             <div id="guardian-error" class="error-msg">Respuesta incorrecta. Lee bien el texto de Lucio.</div>
         </div>
     </div>
 
-    <!-- 2. MODAL DEL MASTER -->
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contacta con el Master</h3>
-            <p>Si tienes alguna incidencia técnica o una duda que las pistas no resuelven, puedes contactar directamente conmigo.</p>
-            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
-                Teléfono / WhatsApp:<br>
-                664 252 723
-            </p>
+            <p>Si tienes alguna incidencia técnica o duda, contacta directamente conmigo.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">WhatsApp: 664 252 723</p>
             <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Cerrar</button>
         </div>
     </div>
 
-    <!-- 3. CONTENIDO PRINCIPAL -->
     <header class="header">
         <h1>El Primer Paso</h1>
     </header>
 
     <div class="container">
-        
         <div class="imagen-marco">
             <img src="../recursos/p1-inicio.jpg" alt="Inicio del camino">
         </div>
 
         <div class="narrativa" style="font-style: italic;">
-            <p style="font-style: normal;"><strong>Seguid el sendero de mis palabras...</strong></p>
-            
+            <p style="font-style: normal;"><strong>Sigue el sendero de mis palabras para encontrar el camino...</strong></p>
             <p>"Desde el lugar en el que empieza tu andadura, debes pasar a través de la fuente de los más inocentes con sus cestas y continuar por el <strong>sendero del Ángel</strong>.</p>
-            
             <p>Casi al final del camino, cuando no sepas qué dirección tomar, deja a las mujeres que transportan ánforas a tu derecha.</p>
-            
             <p>A Barcino, mi ciudad, su sangre en forma del líquido de la vida llega a través de sus venas hechas de piedra.</p>
-            
-            <p>Allí, donde su arteria empieza y termina, donde siete figuras custodiadas por el Sol y la Luna descansan en el suelo, escrito con ellas encontraréis el camino a seguir."</p>
+            <p>Allí, donde su arteria empieza y termina, donde siete figuras custodiadas por el Sol y la Luna descansan en el suelo, escrito con ellas <strong>encontrarás</strong> el camino a seguir."</p>
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
-            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 Estoy perdido (Pedir Ayuda)</button>
-            
+            <button class="hint-btn" onclick="openGuardianModal()" id="btn-pista-trigger">📍 No sé por dónde ir (Ayuda)</button>
             <div id="pista-texto" class="narrativa" style="display:none; border-left-color: #8d6e63; margin-top: 10px; font-style: normal;">
                 <p><strong>Pista de Navegación:</strong></p>
-                <p>Sitúate en Plaça Catalunya. Baja por la avenida <strong>Portal de l'Àngel</strong> hasta el final.</p>
+                <p>Sitúate en la <strong>Plaza Cataluña</strong>. Baja por la avenida <strong>Portal de l'Àngel</strong> hasta el final.</p>
                 <p>Llegarás a la plaza de la Catedral (Plaça Nova). Busca los restos del <strong>Acueducto Romano</strong> pegados a la muralla.</p>
                 <br>
                 <a href="https://www.google.com/maps/search/?api=1&query=Plaça+Nova+Barcelona" target="_blank" class="btn" style="background-color: #8d6e63; font-size: 0.9rem;">VER MAPA</a>
@@ -99,36 +84,19 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- AQUÍ ESTÁ EL CAMBIO PARA GUARDAR PROGRESO -->
             <button class="btn" onclick="avanzarA('p1-enigma')">HE LLEGADO A LAS VENAS DE PIEDRA</button>
-            
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
-
     </div>
-
-    <!-- Candado de seguridad -->
-    <script src="candado.js"></script>
 
     <script>
         var gModal = document.getElementById('guardian-modal');
         var gErrorMsg = document.getElementById('guardian-error');
         var gInput = document.getElementById('guardian-answer');
-
-        function openGuardianModal() {
-            gModal.style.display = 'flex';
-            gInput.value = "";
-            gErrorMsg.style.display = 'none';
-            gInput.focus();
-        }
-
-        function closeGuardianModal() {
-            gModal.style.display = 'none';
-        }
-
+        function openGuardianModal() { gModal.style.display = 'flex'; gInput.value = ""; gErrorMsg.style.display = 'none'; gInput.focus(); }
+        function closeGuardianModal() { gModal.style.display = 'none'; }
         function checkGuardianAnswer() {
             let respuesta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            
             if (respuesta.includes("ANGEL")) {
                 closeGuardianModal();
                 document.getElementById('pista-texto').style.display = 'block';

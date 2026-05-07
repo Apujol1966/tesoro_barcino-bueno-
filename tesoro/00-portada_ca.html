@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="ca" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>El Tresor de Barcino</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
+    <script src="candado.js"></script>
 </head>
 <body>
 
@@ -16,6 +18,19 @@
             <p style="margin-bottom:20px;">Sembla que ja havies començat la cerca.</p>
             <button class="btn" id="btn-continuar" style="margin-bottom:15px;">CONTINUAR ON HO VAIG DEIXAR</button>
             <button class="hint-btn" id="btn-reiniciar">COMENÇAR DE ZERO</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE AJUDA DIRECTA (Añadido para que funcione) -->
+    <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
+        <div class="modal-content" onclick="event.stopPropagation();">
+            <h3>Contacta amb el Màster</h3>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
+                Telèfon / WhatsApp:<br>
+                664 252 723
+            </p>
+            <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
         </div>
     </div>
 
@@ -32,20 +47,19 @@
         <div class="narrativa">
             <p><strong>"Salut, ciutadà! Si llegeixes això, la deessa Fortuna ha volgut que siguis la meva última esperança.</strong></p>
             <p>El meu nom és <strong>Luci Minici Natal</strong>. Les pedres de <strong>Barcino</strong> expliquen la meva història: vaig ser el primer hispà a guanyar el llorer olímpic amb la meva quadriga (129 dC) i vaig regalar a la ciutat les seves grandioses termes.</p>
-            <p>T'escric des d'<strong>Àfrica</strong>, on serveixo a Roma com a procònsol. La meva vida i el meu llegat corren perill. Si aquesta carta t'ha arribat, potser ja és tard per a mi. Des d'aquí, les meves mans estan lligades, però notícies fosques arriben a les meves orelles: senadors corruptes conspiren per saquejar el tresor que vaig amagar, disposat per protegir el futur de Barcino.</p>
-            <p>He encriptat la ubicació del Tresor en aquesta carta. Només algú amb astúcia i honor podrà desxifrar-la abans que sigui massa tard.</p>
+            <p>T'escric des d'<strong>Àfrica</strong>, on serveixo a Roma com a procònsol. La meva vida i el meu llegat corren perill. Si aquesta carta t'ha arribat, potser ja és tard per a mi. Des d'aquí, les meves mans estan lligades, però notícies fosques arriben a les meves orelles: senadors corruptos conspiren per saquejar el tresor que vaig amagar, disposat per protegir el futur de Barcino.</p>
+            <p>He encriptado la ubicación del Tesoro en esta carta. Només algú amb astúcia i honor podrà desxifrar-la abans que sigui massa tard.</p>
             <p><strong>El destí del meu llegat és ara a les teves mans".</strong></p>
             <p><strong>Acceptes el desafiament?</strong></p>
         </div>
 
         <div class="navigation-controls">
-            <button class="btn" onclick="empezarJuego()">ACCEPTA EL REPTE</button>
+            <!-- Cambiado a avanzarA para consistencia -->
+            <button class="btn" onclick="avanzarA('p1-navegacion')">ACCEPTA EL REPTE</button>
             <button class="hint-btn" onclick="openMasterModal()">🆘 Necessito Ajuda</button>
         </div>
 
     </div>
-
-    <script src="candado.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -57,15 +71,6 @@
                 document.getElementById('btn-reiniciar').onclick = function() { localStorage.removeItem('progresoJuego'); modal.style.display = 'none'; };
             }
         });
-
-        function empezarJuego() {
-            let primeraParada = "p1-navegacion_ca.html";
-            localStorage.setItem('progresoJuego', primeraParada);
-            window.location.href = primeraParada;
-        }
-
-        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
-        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

@@ -38,7 +38,7 @@
         <div class="modal-content">
             <h3>Demostra la teva atenció</h3>
             <p>Abans de revelar-te el camí, respon:</p>
-            <p><em>"Segons el text de Luci, per quin sender has de continuar després de la font?"</em></p>
+            <p><em>"Segons el text de Luci, per quin camí has de continuar després de la font?"</em></p>
             
             <input type="text" id="guardian-answer" class="modal-input" placeholder="Escriu la teva resposta">
             
@@ -53,7 +53,7 @@
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contacta amb el Màster</h3>
-            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resuelven, pots contactar directament amb mi.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
                 Telèfon / WhatsApp:<br>
                 664 252 723
@@ -73,15 +73,15 @@
         </div>
 
         <div class="narrativa" style="font-style: italic;">
-            <p style="font-style: normal;"><strong>Seguiu el sender de les meves paraules...</strong></p>
+            <p style="font-style: normal;"><strong>Segueix el sender de les meves paraules per trobar el camí...</strong></p>
             
-            <p>"Des del lloc on comença la teva caminada, has de passar a través de la font dels més innocents amb les seves cistelles i continuar pel <strong>sender de l'Àngel</strong>.</p>
+            <p>"Des del lloc on comença la teva aventura, hauràs de passar a través de la font dels més innocents amb les seves cistelles i continuar pel <strong>camí de l'Àngel</strong>.</p>
             
-            <p>Quasi al final del camí, quan no sàpigues quina direcció agafar, deixa les dones que transporten àmfores a la teva dreta.</p>
+            <p>Gairebé al final del camí, quan no sàpigues quina direcció escollir, deixa les dones que transporten àmfores a la teva dreta.</p>
             
-            <p>A Barcino, la meva ciutat, la seva sang en forma del líquid de la vida arriba a través de les seves venes fetes de pedra.</p>
+            <p>A Barcino, la meva ciutat, la seva sang en forma del líquid de la vida arriba mitjançant les seves venes fetes de pedra.</p>
             
-            <p>Allà, on la seva artèria comença i acaba, on set figures custodiades pel Sol i la Lluna descansen a terra, escrit amb elles trobareu el camí a seguir."</p>
+            <p>Allà, on la seva artèria comença i acaba, on set figures custodiades pel Sol i la Lluna reposen a terra, escrit amb elles <strong>trobaràs</strong> el camí a seguir."</p>
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
@@ -136,6 +136,10 @@
                 setTimeout(() => gInput.style.borderColor = "#555", 500);
             }
         }
+
+        // LÓGICA DEL MASTER
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

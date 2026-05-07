@@ -40,29 +40,27 @@
     <div class="container">
         
         <div class="imagen-marco">
-            <!-- Foto de la Plaça del Rei, escultura de hierro o suelo acristalado -->
             <img src="../recursos/p3-plaza.jpg" alt="Plaça del Rei">
         </div>
 
         <div class="narrativa">
-            <!-- 1. Confirmación -->
             <p style="font-size: 1.1rem; color: var(--color-acento-rojo-quemado);"><strong>¡Exacto! El Archivo de la Corona de Aragón.</strong></p>
 
-            <!-- 2. Curiosidad Histórica (Añadida aquí según tu petición) -->
+            <!-- BLOQUE: ARCHIVOS DE LA CIUDAD REORDENADO -->
             <div style="background-color: rgba(255, 255, 255, 0.05); padding: 12px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 15px 0; font-size: 0.9rem; font-style: italic;">
                 <p style="margin-top: 0;"><strong>🏛️ Archivos de la Ciudad:</strong></p>
-                <p style="margin-bottom: 0;">Esas cerámicas con un caballo y un carruaje son las primeras <strong>señales de tráfico</strong> de Barcelona (mediados del siglo XIX). Se instalaron para indicar el sentido obligatorio y evitar que los carros se quedaran encallados en las calles más estrechas de la ciudad amurallada.</p>
+                <p style="margin-bottom: 10px;">Esas cerámicas con un caballo y un carruaje que ves en las paredes cercanas son las primeras <strong>señales de tráfico</strong> de Barcelona (s. XIX). Se instalaron para indicar el sentido obligatorio y evitar que los carros se quedaran encallados en las calles más estrechas de la ciudad amurallada.</p>
+                <p style="margin-bottom: 0;">Además, bajo tus pies, en la Barcino romana, se encontraba el barrio de las <strong>tintorerías</strong>. Como no tenían jabón, utilizaban la orina (por su amoníaco) para blanquear las túnicas. ¡Había vasijas en las esquinas para que los transeúntes colaboraran!</p>
             </div>
 
             <p>Tus pies están en el lugar correcto. Ahora lee la continuación de la carta:</p>
 
-            <!-- 3. Relato de la Carta -->
             <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
-                <p>"Bien, espero que vuestra astucia os haya traído aquí antes que a las manos negras de Barcino. Esta prueba será difícil; buscad ayuda en el reflejo de la historia.</p>
+                <p>"Bien, espero que <strong>tu</strong> astucia <strong>te</strong> haya traído aquí antes que a las manos negras de Barcino. Esta prueba será difícil; <strong>busca</strong> ayuda en el reflejo de la historia.</p>
                 
-                <p>De frente, imponente hierro encontrarás, y sólo si miras a través de su ojo serás tú el que verás. Deberás mirar desde dónde aún queda algo tan antiguo como yo. Ahora que sabes dónde mirar, la siguiente pista podrás encontrar.</p>
+                <p>De frente, imponente hierro encontrarás, y sólo si miras a través de su ojo serás tú el que verás. <strong>Deberás mirar desde dónde aún queda algo tan antiguo como yo.</strong> Ahora que sabes dónde mirar, la siguiente pista podrás encontrar.</p>
                 
-                <p>Si habéis llegado al punto exacto, el reflejo de la ciudad os hablará. Para abrir mi cofre (imaginario), necesitarás <strong>contar desde ese lugar que hace de espejo de la plaza:</strong></p>
+                <p>Si <strong>has</strong> llegado al punto exacto, el reflejo de la ciudad <strong>te</strong> hablará. Para abrir mi cofre (imaginario), necesitarás <strong>contar desde ese lugar que hace de espejo de la plaza:</strong></p>
                 
                 <ul class="conteo-list">
                     <li>¿Cuántas campanas puedes ver?</li>
@@ -72,7 +70,7 @@
                     <li>¿Cuántas fuentes dan agua a la plaza?</li>
                 </ul>
 
-                <p>Si sois capaces de verlo todo, podréis leer mi mensaje. Ahora que tenéis el código os daré tres opciones para que podáis comprobar si habéis mirado bien a través del espejo de la ciudad:</p>
+                <p>Si <strong>eres capaz</strong> de verlo todo, <strong>podrás</strong> leer mi mensaje. Ahora que <strong>tienes</strong> el código <strong>te</strong> daré tres opciones para que <strong>puedas</strong> comprobar si <strong>has</strong> mirado bien a través del espejo de la ciudad:</p>
                 
                 <div class="opciones-box">
                     <p style="font-style: normal; font-weight: bold; text-align: center; color: var(--color-acento-rojo-quemado); margin: 5px 0;">
@@ -82,7 +80,7 @@
                     </p>
                 </div>
                 
-                <p style="font-style: normal;">¿Qué código de los tres habéis descifrado?"</p>
+                <p style="font-style: normal;">¿Qué código de los tres <strong>has</strong> descifrado?"</p>
             </div>
         </div>
 
@@ -91,7 +89,6 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- AVANZAMOS AL DESCIFRADO PIGPEN -->
             <button class="btn" onclick="comprobarRespuesta()">ELEGIR OPCIÓN</button>
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
@@ -116,7 +113,6 @@
             let feedback = document.getElementById('mensaje-error');
             let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            // SOLUCIÓN: II
             if (respuestaLimpia === "II" || respuestaLimpia === "2" || respuestaLimpia.includes("II")) {
                 avanzarA('p3-recompensa');
             } else {

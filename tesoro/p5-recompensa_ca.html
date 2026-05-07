@@ -36,6 +36,7 @@
     <div class="container">
         
         <div class="imagen-marco">
+            <!-- Foto detallada de una de las tumbas o de la necrópolis -->
             <img src="../recursos/p5-recompensa.jpg" alt="Detall de les tombes romanes">
         </div>
 
@@ -45,16 +46,22 @@
             <!-- CURIOSITAT HISTÒRICA -->
             <div style="background-color: rgba(255, 255, 255, 0.05); padding: 15px; border-left: 4px solid var(--color-acento-rojo-quemado); margin: 20px 0; font-size: 0.95rem; font-style: italic;">
                 <p style="margin-top: 0;"><strong>🏛️ Arxius de la Ciutat:</strong></p>
-                <p style="margin-bottom: 0;">La Via Sepulcral Romana de Barcino és un jaciment únic. Les tombes se situaven fora de la ciutat, ja que la llei romana prohibia enterrar els morts dins del recinte amurallat. Les que veus avui van estar ocultes sota terra durant més de 1.500 anys.</p>
+                <p style="margin-bottom: 0;">La Via Sepulcral Romana de Barcino és un jaciment únic. Les tombes se situaven fora de la ciutat, ja que la llei romana prohibia enterrar els morts dins del recinte amurallado. Les que veus avui van estar ocultes sota terra durant més de 1.500 anys.</p>
             </div>
 
-            <!-- TEXT DE LA CARTA -->
+            <!-- TEXT DE LA CARTA (Actualitzat segons la versió en espanyol) -->
             <div style="border-top: 1px solid var(--color-acento-tierra); margin-top: 20px; padding-top: 20px; font-style: italic;">
-                <p>"Davant teu pots veure les morades eternes d'aquells que una vegada van caminar pels carrers de la meva estimada Barcino. Les nostres tombes estan als camins perquè els viatgers puguin veure'ns i recordar-nos.</p>
+                <p>"Et deixo l'última pista sobre el parador del Tresor de Barcino:</p>
                 
-                <p>La meva família ocupa una d'aquestes tombes i el nostre símbol segueix visible en un lateral. La <strong>sort</strong> sempre ens acompanya, així que espero que a tu també. Ets capaç de veure'ns?</p>
+                <p>Ara que et trobes al lloc que correspon, el meu Tresor has de trobar.<br>
+                Allà on la nostra memòria descansa, tots ens poden recordar.<br>
+                Cadascuna de les nostres eternes morades posseeix una porta per on entrar,<br>
+                ja que les nostres ànimes els viatgers solen alimentar.</p>
                 
-                <p style="font-style: normal;"><strong>Busca la tomba que menciona els Minicius. Quina figura de la SORT hi ha gravada al seu lateral?</strong>"</p>
+                <p>La meva família ocupa una d'aquestes tombes i el nostre símbol segueix visible en un lateral. La sort sempre ens acompanya, així que espero que a tu també.<br>
+                Ets capaç de veure'ns?"</p>
+                
+                <p style="font-style: normal; margin-top: 15px;"><strong>Busca la tomba que menciona els Minicius. Quina figura de la SORT hi ha gravada al seu lateral?</strong></p>
             </div>
         </div>
 
@@ -92,6 +99,7 @@
 
             // SOLUCIÓ: TREBOL
             if (respuestaLimpia.includes("TREBOL")) {
+                // CORRECTE: Anem a la troballa final
                 avanzarA('p5-final');
             } else {
                 intentos++;

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Cor Sagrat</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
+    <!-- Configuració -->
     <script src="../config.js"></script>
 
     <style>
@@ -29,7 +30,7 @@
     <div id="master-modal" class="modal-overlay" onclick="closeMasterModal()">
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contacta amb el Màster</h3>
-            <p>Si tens cap incidència tècnica o un dubte que les pistes no resolen, pots contactar directament amb mi.</p>
+            <p>Si tens cap incidència tècnica o un dubte que les pistes no resuelven, pots contactar directament amb mi.</p>
             <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">
                 Telèfon / WhatsApp:<br>
                 664 252 723
@@ -64,11 +65,11 @@
             <p style="text-align: center; color: var(--color-acento-rojo-quemado);"><strong>B = II &nbsp; | &nbsp; A = I &nbsp; | &nbsp; I = IX</strong></p>
             
             <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 4px; text-align: center; font-family: monospace; font-size: 1.1rem; border: 1px solid var(--color-acento-tierra); letter-spacing: 1px;">
-                I / XXII / VII / XXII / XX / XXI / IX
+                I / XXI / VII / XXI / XIX / XX / IX
                 <br><br>
                 -
                 <br><br>
-                XXI / V / XIII / XVII / XII / IX
+                XX / V / XIII / XVI / XII / IX
             </div>
         </div>
 
@@ -86,11 +87,12 @@
         <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
         
         <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
-            <strong>Pista:</strong> És un xifratge simple. Cada número romà correspon a una posició a l'abecedari. I (1) és A, V (5) és E...
+            <strong>Pista:</strong> És un xifratge simple. Cada número romà correspon a una posició a l'abecedari català. I (1) és A, V (5) és E...
         </div>
 
     </div>
 
+    <!-- Candado -->
     <script src="candado.js"></script>
 
     <script>
@@ -102,6 +104,7 @@
             
             let respostaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
+            // SOLUCIÓ: AUGUSTI TEMPLI
             if (respostaLimpia === "AUGUSTI TEMPLI" || 
                 respostaLimpia === "AUGUSTITEMPLI" || 
                 respostaLimpia.includes("TEMPLE D'AUGUST") ||
@@ -122,6 +125,9 @@
                 }
             }
         }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
 
         function mostrarPista() {
             document.getElementById('texto-pista').style.display = 'block';

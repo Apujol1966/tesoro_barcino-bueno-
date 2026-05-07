@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="ca" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Parada 2: El Cim</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
@@ -55,7 +56,7 @@
             
             <p>Ara, per demostrar que ets aquí, mira la placa metàl·lica de la paret.</p>
             
-            <p><strong>A quina altura exacta (en metres) indica la placa que ens trobem?</strong></p>
+            <p><strong>A quina altura exacta (en metres) indica la placa que et trobes?</strong></p>
         </div>
 
         <div class="input-group">
@@ -89,7 +90,6 @@
             let respostaNeta = input.toLowerCase().trim().replace('m', '').replace('mts', '').replace('.', ',').trim();
 
             if (respostaNeta === "16,9" || respostaNeta === "16,90") {
-                // USO DE avanzarA()
                 avanzarA('p2-recompensa');
             } else {
                 intentos++;
@@ -108,6 +108,9 @@
             document.getElementById('texto-pista').style.display = 'block';
             document.getElementById('btn-pista').style.display = 'none';
         }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="ca" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Parada 2: El Temple Amagat</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
+    <script src="candado.js"></script>
     
     <style>
         .modal-overlay {
@@ -18,6 +20,7 @@
             background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
             padding: 25px; border-radius: 4px; text-align: center;
             width: 100%; max-width: 400px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
         .modal-input {
@@ -77,7 +80,7 @@
                 <p style="margin-bottom: 0;">El temple s'erigia sobre el Fòrum, a l'actual Barri Gòtic, en el punt més alt del Mont Tàber.</p>
             </div>
             
-            <p>Troba'l per seguir el camí que Luci ens ha deixat!</p>
+            <p>Troba'l per seguir el camí que Luci <strong>t'ha</strong> deixat!</p>
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
@@ -92,15 +95,11 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- USO DE avanzarA() -->
             <button class="btn" onclick="avanzarA('p2-enigma')">HE ARRIBAT AL TEMPLE</button>
-            
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta amb el Màster</button>
         </div>
 
     </div>
-
-    <script src="candado.js"></script>
 
     <script>
         var gModal = document.getElementById('guardian-modal');
@@ -122,6 +121,8 @@
                 setTimeout(() => gInput.style.borderColor = "#555", 500);
             }
         }
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>El Tesoro de Barcino</title>
     <link rel="stylesheet" href="tesoro-estilos.css">
     <script src="../config.js"></script>
-    <script src="candado.js"></script> <!-- Importa candado.js aquí para sus funciones globales -->
+    <script src="candado.js"></script>
 </head>
 <body>
 
@@ -48,7 +49,7 @@
             
             <p>Mi nombre es <strong>Lucio Minicio Natal</strong>. Las piedras de <strong>Barcino</strong> cuentan mi historia: fui el primer hispano en ganar el laurel olímpico con mi cuadriga (129 d.C.) y regalé a la ciudad sus grandiosas termas.</p>
             
-            <p>Te escribo desde <strong>África</strong>, donde sirvo a Roma como procónsul. Mi vida y mi legado corren peligro. Si esta carta te ha llegado, quizás ya es tarde para mi. Desde aquí, mis manos están atadas, pero noticias oscuras llegan a mis oídos: senadores corruptos conspiran para saquear el tesoro que oculté, dispuesto para proteger el futuro de Barcino.</p>
+            <p>Te escribo desde <strong>África</strong>, donde sirvo a Roma como procónsul. Mi vida y mi legado corren peligro. Si esta carta te ha llegado, quizás ya es tarde para <strong>mí</strong>. Desde aquí, mis manos están atadas, pero noticias oscuras llegan a mis oídos: senadores corruptos conspiran para saquear el tesoro que oculté, dispuesto para proteger el futuro de Barcino.</p>
             
             <p>He encriptado la ubicación del Tesoro en esta carta. Solo alguien con astucia y honor podrá descifrarla antes de que sea demasiado tarde.</p>
             
@@ -57,7 +58,6 @@
         </div>
 
         <div class="navigation-controls">
-            <!-- Usa avanzarA del candado.js -->
             <button class="btn" onclick="avanzarA('p1-navegacion')">ACEPTO EL RETO</button>
             <button class="hint-btn" onclick="openMasterModal()" style="margin-top: 20px; border: 1px solid var(--color-acento-rojo-quemado); color: var(--color-acento-rojo-quemado);">🆘 Contacta con el Master</button>
         </div>
@@ -65,14 +65,13 @@
     </div>
 
     <script>
-        // Lógica de Continuar Partida (al cargar la página)
         document.addEventListener("DOMContentLoaded", function() {
             let paginaGuardada = localStorage.getItem('progresoJuego');
             if (paginaGuardada) {
                 let modal = document.getElementById('continue-modal');
                 modal.style.display = 'flex';
                 document.getElementById('btn-continuar').onclick = function() { 
-                    window.location.href = paginaGuardada; // La URL ya viene con el idioma correcto
+                    window.location.href = paginaGuardada; 
                 };
                 document.getElementById('btn-reiniciar').onclick = function() { 
                     localStorage.removeItem('progresoJuego'); 
@@ -80,7 +79,6 @@
                 };
             }
         });
-        // empezarJuego ya no es necesaria aquí, usar avanzarA directamente en el botón
     </script>
 </body>
 </html>

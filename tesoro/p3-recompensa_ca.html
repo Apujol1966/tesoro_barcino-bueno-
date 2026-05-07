@@ -1,44 +1,23 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="ca" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Parada 3: El Cofre</title>
-    <!-- Estils generals -->
     <link rel="stylesheet" href="tesoro-estilos.css">
-    <!-- Configuració i Candau -->
     <script src="../config.js"></script>
     <script src="candado.js"></script>
 
     <style>
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center;
-            z-index: 1000; padding: 20px; box-sizing: border-box;
-        }
-        .modal-content {
-            background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado);
-            padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
-        }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
         .modal-content h3 { color: var(--color-acento-rojo-quemado); margin-top: 0; }
-
-        .imagen-marco {
-            width: 100%; max-height: none; height: auto;
-            background-color: #ffffff; border: 3px solid var(--color-acento-tierra);
-            overflow: hidden; display: flex; justify-content: center; align-items: center;
-        }
-
-        .imagen-marco img {
-            width: 100%; height: auto; max-height: 400px;
-            object-fit: contain; display: block;
-        }
-
-        /* --- SISTEMA DE SÍMBOLS CSS --- */
+        .imagen-marco { width: 100%; height: auto; background-color: #ffffff; border: 3px solid var(--color-acento-tierra); overflow: hidden; display: flex; justify-content: center; align-items: center; }
+        .imagen-marco img { width: 100%; height: auto; max-height: 400px; object-fit: contain; display: block; }
         .message-row { display: flex; justify-content: center; gap: 12px; margin: 20px 0; flex-wrap: wrap; }
         .symbol { width: 32px; height: 32px; border-color: var(--color-texto-claro); border-style: solid; border-width: 0; position: relative; }
         .symbol.dot::after { content: '•'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--color-texto-claro); font-size: 24px; line-height: 0; }
-
         .sym-p { border-top-width: 3px; border-right-width: 3px; }
         .sym-l { border-bottom-width: 3px; border-left-width: 3px; }
         .sym-a { border-bottom-width: 3px; border-right-width: 3px; }
@@ -59,7 +38,7 @@
         <div class="modal-content" onclick="event.stopPropagation();">
             <h3>Contacta amb el Màster</h3>
             <p>Si tens cap incidència tècnica o un dubte, contacta directament amb mi.</p>
-            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">Telèfon / WhatsApp:<br>664 252 723</p>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--color-acento-rojo-quemado);">Telèfon / WhatsApp: 664 252 723</p>
             <button class="btn" onclick="closeMasterModal()" style="width: auto; padding: 10px 30px;">Tancar</button>
         </div>
     </div>
@@ -68,11 +47,9 @@
 
     <div class="container">
         <div class="imagen-marco"><img src="../recursos/p3-pigpen-clave.jpg" alt="Clau de desxifratge"></div>
-
         <div class="narrativa">
             <p style="font-size: 1.2rem;"><strong>Exacte! Has triat l'Opció II.</strong></p>
             <p>El cofre s'obre. Fes servir la clau de la imatge superior per desxifrar el missatge:</p>
-            
             <div class="message-row">
                 <div class="symbol sym-p dot"></div><div class="symbol sym-l dot"></div><div class="symbol sym-a"></div><div class="symbol sym-z dot"></div><div class="symbol sym-a"></div>
             </div>

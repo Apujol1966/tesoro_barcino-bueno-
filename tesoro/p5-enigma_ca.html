@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="ca">
+<html lang="ca" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>Parada 5: Els Guardians de la Història</title>
     <!-- Estils -->
     <link rel="stylesheet" href="tesoro-estilos.css">
     <!-- Configuració -->
     <script src="../config.js"></script>
+    <script src="candado.js"></script>
+    <script>verificarAcceso();</script>
     <style>
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); display: none; align-items: center; justify-content: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
         .modal-content { background-color: #303030; border: 2px solid var(--color-acento-rojo-quemado); padding: 25px; border-radius: 4px; text-align: center; width: 100%; max-width: 400px; box-shadow: 0 0 20px rgba(0,0,0,0.8); }
@@ -67,8 +70,6 @@
         </div>
 
     </div>
-
-    <script src="candado.js"></script>
 
     <script>
         let intentos = 0;

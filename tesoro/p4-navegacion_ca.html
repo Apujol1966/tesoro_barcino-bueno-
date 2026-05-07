@@ -59,7 +59,7 @@
         <div class="narrativa" style="font-style: italic;">
             <p>"Creua ara el cor de la ciutat cap al lloc on el vapor i l'aigua reconfortaven el cos després de la fatiga. El meu pare i jo vam alçar allà les Termes de Barcino per a orgull de la colònia.</p>
             
-            <p>Busqueu la plaça que s'amaga rere el gran palau del govern de la ciutat. Allà on la història se sumergeix sota el terra, us espero."</p>
+            <p><strong>Busca</strong> la plaça que s'amaga rere el gran palau del govern de la ciutat. Allà on la història se sumergeix sota el terra, <strong>t'espero</strong>."</p>
         </div>
 
         <div style="width: 100%; margin-bottom: 20px; text-align: center;">
@@ -98,7 +98,7 @@
             let resposta = gInput.value.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
             
             // RESPOSTES VÀLIDES: LUCI, JO, PARE, TU
-            if (resposta.includes("LUCI") || resposta.includes("JO") || respuesta.includes("PARE") || respuesta === "TU") {
+            if (resposta.includes("LUCI") || resposta.includes("JO") || resposta.includes("PARE") || resposta === "TU") {
                 closeGuardianModal();
                 document.getElementById('pista-texto').style.display = 'block';
                 document.getElementById('btn-pista-trigger').style.display = 'none';
