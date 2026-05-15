@@ -71,31 +71,32 @@
         <button id="btn-pista" class="hint-btn" onclick="mostrarPista()" style="display: none;">💡 PISTA</button>
         
         <div id="texto-pista" class="feedback" style="display:none; border: 1px solid #aaa; color: #ccc;">
-            <strong>Pista:</strong> No comptis tota la muralla. Només els arcs semicirculars que surten de la torre. I mira-ho des de tots els angles.
+            <strong>Pista de posicionament:</strong> No comptis tota la muralla. Només els arcs semicirculars que surten de la torre. <strong>Posa't a l'esquerra de la figura del Sol per veure'ls bé</strong> i mira-ho des de tots els angles.
         </div>
         
     </div>
 
     <script>
-        let intents = 0;
+        let intentos = 0; // Variable corregida
 
         function comprobarRespuesta() {
             let input = document.getElementById('respuesta').value;
             let feedback = document.getElementById('mensaje-error');
+            let hintButton = document.getElementById('btn-pista');
             
-            let respostaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+            let respuestaLimpia = input.trim().toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-            if (respostaLimpia === "2" || respostaLimpia === "DOS" || respostaLimpia === "DOS ARCS") {
+            if (respuestaLimpia === "2" || respuestaLimpia === "DOS" || respuestaLimpia === "DOS ARCS") {
                 avanzarA('p1-recompensa');
             } else {
-                intentos++;
+                intentos++; // Ahora el contador funciona correctamente
                 feedback.style.display = 'block';
                 let inputField = document.getElementById('respuesta');
                 inputField.style.borderColor = '#ff6b6b';
                 setTimeout(() => { inputField.style.borderColor = ''; }, 500);
 
                 if (intentos >= 3) {
-                    document.getElementById('btn-pista').style.display = 'inline-block';
+                    hintButton.style.display = 'inline-block';
                 }
             }
         }
@@ -104,6 +105,9 @@
             document.getElementById('texto-pista').style.display = 'block';
             document.getElementById('btn-pista').style.display = 'none';
         }
+
+        function openMasterModal() { document.getElementById('master-modal').style.display = 'flex'; }
+        function closeMasterModal() { document.getElementById('master-modal').style.display = 'none'; }
     </script>
 </body>
 </html>
